@@ -1,70 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { 
-  FaRobot, FaBolt, FaChartBar, FaChartLine, FaRuler, 
-  FaPalette, FaShieldAlt, FaHeadset, FaHeart, FaPlus 
-} from 'react-icons/fa';
-
-const features = [
-  { 
-    icon: <FaRobot />, 
-    title: "AI Body Measurements", 
-    desc: "Get accurate size recommendations with just a few data points—no hardware required.",
-    color: "from-blue-500 to-indigo-600"
-  },
-  { 
-    icon: <FaBolt />, 
-    title: "Fast Predict API", 
-    desc: "Lightning-fast integration that takes days, not weeks. Get up and running quickly.",
-    color: "from-amber-400 to-orange-500"
-  },
-  { 
-    icon: <FaChartBar />, 
-    title: "Partner Dashboard", 
-    desc: "Track sizing metrics, manage size charts, and access real-time analytics in one place.",
-    color: "from-indigo-500 to-purple-600"
-  },
-  { 
-    icon: <FaChartLine />, 
-    title: "Advanced Analytics", 
-    desc: "Understand fit preferences, reduce return rates, and track customer engagement.",
-    color: "from-green-500 to-emerald-600"
-  },
-  { 
-    icon: <FaRuler />, 
-    title: "Flexible Sizing", 
-    desc: "Use our ready-made templates or easily upload your brand's unique size charts.",
-    color: "from-pink-500 to-rose-600"
-  },
-  { 
-    icon: <FaPalette />, 
-    title: "Custom & White-label", 
-    desc: "Customize the experience to match your brand, features, and integration needs.",
-    color: "from-violet-500 to-purple-600"
-  },
-  { 
-    icon: <FaShieldAlt />, 
-    title: "Privacy & Security", 
-    desc: "100% online, GDPR compliant, with secure data handling and no physical hardware.",
-    color: "from-blue-400 to-cyan-500"
-  },
-  { 
-    icon: <FaHeadset />, 
-    title: "Dedicated Support", 
-    desc: "Get personalized onboarding, custom development, and responsive technical support.",
-    color: "from-teal-500 to-green-600"
-  },
-  { 
-    icon: <FaHeart />, 
-    title: "Retention Tools", 
-    desc: "Built-in campaigns, reminders, and personalization features to boost customer loyalty.",
-    color: "from-red-400 to-pink-500"
-  },
-];
+import { FaPlus } from 'react-icons/fa';
+import { getFeatureGridContent } from '../utils/contentLoader';
+import { DynamicIcon } from '../utils/iconUtils';
 
 export default function FeatureGrid() {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+  
+  // Load content from JSON
+  const { features } = getFeatureGridContent();
   
   return (
     <section className="py-24 px-4 md:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
@@ -98,7 +43,7 @@ export default function FeatureGrid() {
               
               <div className={`w-12 h-12 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center text-white shadow-md mb-5 group-hover:scale-110 transition-transform duration-300`}>
                 <span className="text-xl">
-                  {feature.icon}
+                  <DynamicIcon iconName={feature.icon} />
                 </span>
               </div>
               

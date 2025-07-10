@@ -3,63 +3,36 @@
 import { useState } from 'react';
 import { Accordion, AccordionItem } from "../components/ui/new-accordion";
 import CTAButton from "../components/CTAButton";
-import { 
-  FaQuestionCircle, FaSearch, FaAngleRight, 
-  FaShoppingCart, FaLaptopCode, FaUserShield, 
-  FaChartLine, FaCog, FaRocket 
-} from 'react-icons/fa';
-
-const faqs = [
-  {
-    q: "How accurate is the sizing?",
-    a: "Our AI system achieves over 98% accuracy in size recommendations through our unique algorithm trained on 100,000+ body scans. We continuously improve our models using real-world feedback to maintain high accuracy across all body types and clothing categories.",
-    icon: <FaChartLine className="text-indigo-500" />
-  },
-  {
-    q: "What platforms do you support?",
-    a: "MIQYAS integrates seamlessly with all major e-commerce platforms including Shopify, WooCommerce, Magento, BigCommerce, and custom stores via our REST API. We offer plug-and-play modules for quick setup and developer-friendly documentation.",
-    icon: <FaLaptopCode className="text-blue-500" />
-  },
-  {
-    q: "How fast is setup?",
-    a: "Integration typically takes just 2-5 business days. Our team handles the technical implementation, including API connections, size chart configuration, and initial calibration. For standard e-commerce platforms, we have one-click installers.",
-    icon: <FaRocket className="text-purple-500" />
-  },
-  {
-    q: "Can I use my own size charts?",
-    a: "Absolutely! You can upload or build custom size charts in your dashboard. Our system works with your existing sizing standards and can adapt to brand-specific measurements with a calibration period to ensure smooth transition.",
-    icon: <FaCog className="text-green-500" />
-  },
-  {
-    q: "Is my data secure?",
-    a: "We prioritize data security with industry-standard encryption and strict compliance with privacy regulations. Customer measurement data is anonymized and never sold to third parties. We use secure cloud infrastructure with regular security audits.",
-    icon: <FaUserShield className="text-red-500" />
-  },
-  {
-    q: "Do you offer custom features?",
-    a: "Yes! From white-label branding to custom workflows, we build to fit your specific business needs, including retailer-specific dashboards, specialized size charts, custom analytics, and tailor-made shopper experiences.",
-    icon: <FaShoppingCart className="text-yellow-500" />
-  },
-];
+import { FaQuestionCircle, FaSearch, FaAngleRight, FaLaptopCode, FaChartLine, FaRocket } from 'react-icons/fa';
+import { getFAQSectionContent } from '../utils/contentLoader';
+import { DynamicIcon } from '../utils/iconUtils';
+import FAQSchema from '../components/seo/FAQSchema';
 
 export default function FAQSection() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   
-  const categories = [
-    { id: 'all', name: 'All Questions' },
-    { id: 'tech', name: 'Technology' },
-    { id: 'integration', name: 'Integration' },
-    { id: 'pricing', name: 'Pricing' },
-  ];
+  // Load content from JSON
+  const content = getFAQSectionContent();
+  const { faqs, categories } = content;
   
   const filteredFaqs = faqs.filter(faq => 
-    faq.q.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    faq.a.toLowerCase().includes(searchTerm.toLowerCase())
+    (faq.q.toLowerCase().includes(searchTerm.toLowerCase()) || 
+    faq.a.toLowerCase().includes(searchTerm.toLowerCase())) &&
+    (selectedCategory === 'all' || faq.category === selectedCategory)
   );
+
+  // Transform FAQ data for schema
+  const schemaFaqs = faqs.map(faq => ({
+    question: faq.q,
+    answer: faq.a
+  }));
 
   return (
     <section id="faq" className="py-12 sm:py-16 md:py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-b from-white to-indigo-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      {/* Add FAQ Schema for SEO */}
+      <FAQSchema faqs={schemaFaqs} />
+      
       {/* Background decorations */}
       <div className="absolute top-40 -left-20 w-60 sm:w-80 h-60 sm:h-80 bg-blue-100 dark:bg-blue-900/20 rounded-full opacity-30 blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-40 sm:w-60 h-40 sm:h-60 bg-purple-100 dark:bg-purple-900/20 rounded-full opacity-30 blur-3xl"></div>
@@ -122,7 +95,9 @@ export default function FAQSection() {
                   value={faq.q}
                   title={
                     <div className="flex items-center">
-                      <span className="mr-2 sm:mr-3 text-xs sm:text-sm">{faq.icon}</span>
+                      <span className="mr-2 sm:mr-3 text-xs sm:text-sm">
+                        <DynamicIcon iconName={faq.icon} className={faq.iconColor} />
+                      </span>
                       <span className="text-sm sm:text-base">{faq.q}</span>
                     </div>
                   }

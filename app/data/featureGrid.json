@@ -1,0 +1,52 @@
+{
+  "features": [
+    { 
+      "icon": "FaRobot", 
+      "title": "AI Body Measurements", 
+      "desc": "Get accurate size recommendations with just a few data points—no hardware required.",
+      "color": "from-blue-500 to-indigo-600"
+    },
+    { 
+      "icon": "FaBolt", 
+      "title": "Fast Predict API", 
+      "desc": "Lightning-fast integration that takes days, not weeks. Get up and running quickly.",
+      "color": "from-amber-400 to-orange-500"
+    },
+    { 
+      "icon": "FaChartBar", 
+      "title": "Partner Dashboard", 
+      "desc": "Track sizing metrics, manage size charts, and access real-time analytics in one place.",
+      "color": "from-indigo-500 to-purple-600"
+    },
+    { 
+      "icon": "FaChartLine", 
+      "title": "Advanced Analytics", 
+      "desc": "Understand fit preferences, reduce return rates, and track customer engagement.",
+      "color": "from-green-500 to-emerald-600"
+    },
+    { 
+      "icon": "FaRuler", 
+      "title": "Flexible Sizing", 
+      "desc": "Use our ready-made templates or easily upload your brand's unique size charts.",
+      "color": "from-pink-500 to-rose-600"
+    },
+    { 
+      "icon": "FaPalette", 
+      "title": "Custom & White-label", 
+      "desc": "Customize the experience to match your brand, features, and integration needs.",
+      "color": "from-violet-500 to-purple-600"
+    },
+    { 
+      "icon": "FaShieldAlt", 
+      "title": "Privacy & Security", 
+      "desc": "100% online, GDPR compliant, with secure data handling and no physical hardware.",
+      "color": "from-blue-400 to-cyan-500"
+    },
+    { 
+      "icon": "FaHeadset", 
+      "title": "Support & Onboarding", 
+      "desc": "Get expert guidance and dedicated assistance throughout your integration journey.",
+      "color": "from-rose-500 to-red-600"
+    }
+  ]
+}

@@ -1,13 +1,23 @@
+'use client';
+
 import CTAButton from '@/app/components/CTAButton';
-import { FaShopify, FaWordpressSimple, FaTshirt, FaRuler } from 'react-icons/fa';
-import { MdWeb, MdDevices, MdCheckCircle } from 'react-icons/md';
-import { HiOutlineSparkles } from 'react-icons/hi';
 import Image from 'next/image';
 import './heroSection.css';
+import { getHeroSectionContent } from '../utils/contentLoader';
+import { DynamicIcon } from '../utils/iconUtils';
+import { FaTshirt } from 'react-icons/fa';
+import { MdCheckCircle } from 'react-icons/md';
 
 export default function HeroSection() {
+  // Load content from JSON
+  const content = getHeroSectionContent();
+  
   return (
-    <section className="relative flex flex-col-reverse md:flex-row items-center justify-between py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 min-h-[70vh] sm:min-h-[75vh] overflow-hidden">
+    <section 
+      aria-label="Hero Section"
+      itemScope 
+      itemType="https://schema.org/WebPageElement"
+      className="relative flex flex-col-reverse md:flex-row items-center justify-between py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 min-h-[70vh] sm:min-h-[75vh] overflow-hidden">
       {/* Enhanced animated background shapes */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute -top-20 -left-20 w-60 sm:w-72 h-60 sm:h-72 bg-indigo-200 rounded-full opacity-30 blur-3xl animate-pulse" />
@@ -15,37 +25,52 @@ export default function HeroSection() {
         <div className="absolute top-1/4 right-1/4 w-28 sm:w-36 h-28 sm:h-36 bg-purple-200 rounded-full opacity-20 blur-xl animate-pulse" />
       </div>
       <div className="flex-1 flex flex-col items-start gap-3 sm:gap-4 md:gap-6 z-10 mt-4 md:mt-0">
-        <Image src="/brand.svg" alt="MIQYAS Logo" width={100} height={35} className="mb-0 sm:mb-1 w-24 sm:w-28 md:w-32 h-auto" priority />
+        <Image 
+          src={content.logo.src} 
+          alt={content.logo.alt} 
+          width={content.logo.width} 
+          height={content.logo.height} 
+          className="mb-0 sm:mb-1 w-24 sm:w-28 md:w-32 h-auto" 
+          priority 
+        />
         <div className="inline-block px-2 py-1 sm:px-3 sm:py-1 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white mb-1 sm:mb-2 shadow-md relative animate-pulse">
           <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-wider">
-            <HiOutlineSparkles className="inline text-sm sm:text-base text-yellow-300" /> COMING SOON
+            <DynamicIcon iconName={content.badge.icon} className="inline text-sm sm:text-base text-yellow-300" /> {content.badge.text}
           </span>
           <div className="absolute -right-1 -top-1 w-3 h-3 sm:w-4 sm:h-4 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
         </div>
-        <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight drop-shadow-sm sm:drop-shadow-md">
-          Cut Returns. Boost Sales.<br />
-          <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">AI Sizing That Gets It Right</span>
+        <h1 
+          itemProp="headline" 
+          className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight drop-shadow-sm sm:drop-shadow-md"
+        >
+          {content.headline.main}<br />
+          <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{content.headline.highlight}</span>
         </h1>
-        <p className="text-xs xs:text-sm sm:text-base md:text-lg font-medium text-gray-700 dark:text-gray-200 max-w-xl">
-          For fashion brands, online stores, and shoppers who want a perfect fit with zero hassle.
+        <p 
+          itemProp="description"
+          className="text-xs xs:text-sm sm:text-base md:text-lg font-medium text-gray-700 dark:text-gray-200 max-w-xl"
+        >
+          {content.subheading}
         </p>
         <div className="flex gap-2 sm:gap-3 mt-2 sm:mt-3 flex-wrap">
-          <CTAButton primary href="#contact">
-            <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm">
-              <MdDevices className="text-sm sm:text-base" /> Request a Demo
-            </span>
-          </CTAButton>
-          <CTAButton href="#product-demo">
-            <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm">
-              <FaRuler className="text-sm sm:text-base" /> See it in Action
-            </span>
-          </CTAButton>
+          {content.ctaButtons.map((button, index) => (
+            <CTAButton key={index} primary={button.primary} href={button.href}>
+              <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm">
+                <DynamicIcon iconName={button.icon} className="text-sm sm:text-base" /> {button.text}
+              </span>
+            </CTAButton>
+          ))}
         </div>
         <div className="flex items-center gap-1.5 sm:gap-3 mt-4 sm:mt-6 bg-white/80 dark:bg-gray-900/80 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-sm sm:shadow-md backdrop-blur-sm">
-          <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Works with:</span>
-          <FaShopify className="text-green-600 dark:text-green-500 text-base sm:text-lg" title="Shopify" />
-          <FaWordpressSimple className="text-blue-700 dark:text-blue-400 text-base sm:text-lg" title="WooCommerce" />
-          <MdWeb className="text-indigo-500 dark:text-indigo-400 text-base sm:text-lg" title="Custom Platforms" />
+          <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">{content.compatibilityText}</span>
+          {content.compatibilityIcons.map((icon, index) => (
+            <DynamicIcon 
+              key={index} 
+              iconName={icon.icon} 
+              className={`${icon.color} text-base sm:text-lg`} 
+              title={icon.title} 
+            />
+          ))}
         </div>
       </div>
       <div className="flex-1 flex items-center justify-center w-full md:w-auto mb-6 md:mb-0 z-10">

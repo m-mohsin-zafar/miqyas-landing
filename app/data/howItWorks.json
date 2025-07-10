@@ -1,0 +1,33 @@
+{
+  "title": {
+    "badge": "Simple Process",
+    "heading": "How getfit Works",
+    "highlight": "getfit"
+  },
+  "steps": [
+    {
+      "number": "1",
+      "icon": "FaShoppingBag",
+      "title": "Start Shopping",
+      "description": "Customer visits your online store and browses your products"
+    },
+    {
+      "number": "2",
+      "icon": "FaCamera",
+      "title": "AI Measurement",
+      "description": "Our AI quickly estimates measurements from simple photos and data inputs"
+    },
+    {
+      "number": "3",
+      "icon": "FaTshirt",
+      "title": "Size Match",
+      "description": "The system matches body measurements to the perfect size for each garment"
+    },
+    {
+      "number": "4",
+      "icon": "FaSmile",
+      "title": "Perfect Fit",
+      "description": "Customer receives clothing that fits perfectly right out of the package"
+    }
+  ]
+}
