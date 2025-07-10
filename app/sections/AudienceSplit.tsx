@@ -1,0 +1,304 @@
+'use client';
+
+import { useState } from 'react';
+import { 
+  FaShoppingBag, FaTshirt, FaChartLine, FaBoxOpen,
+  FaSmile, FaSearch, FaCreditCard, FaExchangeAlt
+} from 'react-icons/fa';
+import { HiOutlineShoppingBag, HiOutlineShoppingCart } from 'react-icons/hi';
+import Image from 'next/image';
+
+export default function AudienceSplit() {
+  const [activeTab, setActiveTab] = useState('retailers');
+
+  const retailerBenefits = [
+    { 
+      icon: <FaBoxOpen className="text-white" />, 
+      title: 'Reduce Returns by 72%',
+      description: 'Lower return rates significantly by helping customers choose the right size the first time.'
+    },
+    { 
+      icon: <FaChartLine className="text-white" />, 
+      title: 'Increase Conversion Rates',
+      description: 'Remove size uncertainty from the purchase decision to boost conversion by up to 35%.'
+    },
+    { 
+      icon: <FaShoppingBag className="text-white" />, 
+      title: 'Build Customer Loyalty',
+      description: 'Create lasting relationships with shoppers who trust your sizing recommendations.'
+    }
+  ];
+
+  const shopperBenefits = [
+    { 
+      icon: <FaSmile className="text-white" />, 
+      title: 'Shop with Confidence',
+      description: 'Never worry about ordering the wrong size again with AI-powered recommendations.'
+    },
+    { 
+      icon: <FaSearch className="text-white" />, 
+      title: 'Find Perfect Fits',
+      description: 'Discover brands and styles that match your unique body measurements.'
+    },
+    { 
+      icon: <FaTshirt className="text-white" />, 
+      title: 'Save Time & Hassle',
+      description: 'Eliminate the need for returns and exchanges due to sizing issues.'
+    }
+  ];
+  
+  return (
+    <section className="py-24 px-4 md:px-16 bg-gradient-to-b from-white to-indigo-50/50 dark:from-gray-900 dark:to-indigo-950/30 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-40 left-20 w-64 h-64 bg-blue-100 dark:bg-blue-900/20 rounded-full opacity-30 blur-3xl"></div>
+      <div className="absolute bottom-40 right-20 w-64 h-64 bg-indigo-100 dark:bg-indigo-900/20 rounded-full opacity-30 blur-3xl"></div>
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="flex flex-col items-center mb-16">
+          <span className="px-4 py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-sm font-medium mb-4 shadow-sm">For Everyone</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white drop-shadow-sm">
+            Tailored <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Solutions</span> for All
+          </h2>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 to-blue-400 mt-6 rounded-full shadow-sm"></div>
+          <p className="text-gray-600 dark:text-gray-300 text-center max-w-3xl mt-6">
+            Whether you're a fashion retailer looking to reduce returns or a shopper seeking the perfect fit,
+            MIQYAS delivers value through intelligent sizing technology.
+          </p>
+        </div>
+        
+        {/* Tab navigation */}
+        <div className="flex justify-center gap-4 mb-12">
+          <button 
+            onClick={() => setActiveTab('retailers')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-base font-medium transition-all duration-300 ${
+              activeTab === 'retailers' 
+              ? 'bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-lg' 
+              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+            }`}
+          >
+            <HiOutlineShoppingBag className="text-xl" />
+            For Retailers & Brands
+          </button>
+          <button 
+            onClick={() => setActiveTab('shoppers')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-full text-base font-medium transition-all duration-300 ${
+              activeTab === 'shoppers' 
+              ? 'bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-lg' 
+              : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+            }`}
+          >
+            <HiOutlineShoppingCart className="text-xl" />
+            For Shoppers
+          </button>
+        </div>
+        
+        {/* Content section */}
+        <div className="flex flex-col lg:flex-row gap-10 items-center">
+          {/* Left content - Benefits */}
+          <div className="w-full lg:w-1/2 space-y-6">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8">
+              {activeTab === 'retailers' ? 
+                'Grow Your Business with Smart Sizing' : 
+                'Never Worry About Fit Again'}
+            </h3>
+            
+            <div className="space-y-6">
+              {(activeTab === 'retailers' ? retailerBenefits : shopperBenefits).map((benefit, i) => (
+                <div key={i} className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-500 flex items-center justify-center flex-shrink-0 shadow-lg">
+                    {benefit.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                      {benefit.title}
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="pt-6">
+              <a href="#contact" className="inline-block">
+                <button className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center gap-2">
+                  {activeTab === 'retailers' ? 'Get Started as a Retailer' : 'Try as a Shopper'} 
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4.16669 10H15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10 4.16669L15.8333 10.0001L10 15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </button>
+              </a>
+            </div>
+          </div>
+          
+          {/* Right content - Visual */}
+          <div className="w-full lg:w-1/2">
+            {activeTab === 'retailers' ? (
+              <div className="relative bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/30 dark:to-blue-900/30 p-8 rounded-2xl shadow-xl">
+                <div className="absolute top-4 right-4 px-3 py-1 bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300 text-xs font-semibold rounded-full">
+                  Retailer Dashboard
+                </div>
+                
+                {/* Dashboard visualization */}
+                <div className="space-y-6">
+                  {/* Stats row */}
+                  <div className="grid grid-cols-3 gap-4">
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Return Rate</div>
+                      <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold text-green-600 dark:text-green-500">-72%</span>
+                        <span className="text-xs text-green-600 dark:text-green-500 pb-1">↓</span>
+                      </div>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Conversion</div>
+                      <div className="flex items-end gap-2">
+                        <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-500">+35%</span>
+                        <span className="text-xs text-indigo-600 dark:text-indigo-500 pb-1">↑</span>
+                      </div>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+                      <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">Customers</div>
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">12.5k</div>
+                    </div>
+                  </div>
+                  
+                  {/* Chart */}
+                  <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+                    <div className="mb-4 flex justify-between items-center">
+                      <div className="font-bold text-gray-900 dark:text-white">Size Distribution</div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">Last 30 days</div>
+                    </div>
+                    <div className="flex items-end h-32 gap-4">
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="h-[15%] w-full bg-indigo-300 dark:bg-indigo-700 rounded-t-sm"></div>
+                        <span className="text-xs mt-2 text-gray-500 dark:text-gray-400">XS</span>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="h-[30%] w-full bg-indigo-400 dark:bg-indigo-600 rounded-t-sm"></div>
+                        <span className="text-xs mt-2 text-gray-500 dark:text-gray-400">S</span>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="h-[80%] w-full bg-indigo-500 dark:bg-indigo-500 rounded-t-sm"></div>
+                        <span className="text-xs mt-2 text-gray-500 dark:text-gray-400">M</span>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="h-[60%] w-full bg-indigo-600 dark:bg-indigo-400 rounded-t-sm"></div>
+                        <span className="text-xs mt-2 text-gray-500 dark:text-gray-400">L</span>
+                      </div>
+                      <div className="flex-1 flex flex-col items-center">
+                        <div className="h-[20%] w-full bg-indigo-700 dark:bg-indigo-300 rounded-t-sm"></div>
+                        <span className="text-xs mt-2 text-gray-500 dark:text-gray-400">XL</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Product row */}
+                  <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+                    <div className="mb-3 font-bold text-gray-900 dark:text-white">Top Performing Products</div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700/50 rounded">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-sm"></div>
+                          <span className="text-sm text-gray-900 dark:text-gray-200">Women's Fitted Tee</span>
+                        </div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-gray-200">98% fit accuracy</div>
+                      </div>
+                      <div className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-700/50 rounded">
+                        <div className="flex items-center gap-3">
+                          <div className="w-6 h-6 bg-indigo-100 dark:bg-indigo-900 rounded-sm"></div>
+                          <span className="text-sm text-gray-900 dark:text-gray-200">Men's Slim Jeans</span>
+                        </div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-gray-200">95% fit accuracy</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-900/30 dark:to-blue-900/30 p-8 rounded-2xl shadow-xl">
+                {/* Shopper Experience */}
+                <div className="relative mx-auto w-full max-w-md aspect-[9/16] bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden border-8 border-white dark:border-gray-700">
+                  {/* Mobile app mockup */}
+                  <div className="absolute top-0 left-0 right-0 h-12 bg-indigo-600 flex items-center justify-between px-4">
+                    <div className="text-white font-semibold">MIQYAS</div>
+                    <div className="flex gap-2">
+                      <div className="w-2 h-2 rounded-full bg-white opacity-70"></div>
+                      <div className="w-2 h-2 rounded-full bg-white opacity-70"></div>
+                      <div className="w-2 h-2 rounded-full bg-white"></div>
+                    </div>
+                  </div>
+                  
+                  {/* App content */}
+                  <div className="pt-16 px-4 h-full">
+                    <div className="text-lg font-bold text-gray-900 dark:text-white mb-4">Find Your Perfect Size</div>
+                    
+                    <div className="space-y-4 mb-6">
+                      <div className="bg-gray-100 dark:bg-gray-700 rounded-xl p-4">
+                        <div className="flex justify-between items-center mb-2">
+                          <div className="text-sm font-medium text-gray-900 dark:text-white">Your Measurements</div>
+                          <div className="text-xs text-indigo-600 dark:text-indigo-400">Edit</div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <div className="flex justify-between">
+                            <span className="text-gray-500 dark:text-gray-400">Height</span>
+                            <span className="text-gray-900 dark:text-white">175cm</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-500 dark:text-gray-400">Weight</span>
+                            <span className="text-gray-900 dark:text-white">68kg</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-500 dark:text-gray-400">Chest</span>
+                            <span className="text-gray-900 dark:text-white">92cm</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-500 dark:text-gray-400">Waist</span>
+                            <span className="text-gray-900 dark:text-white">76cm</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gray-100 dark:bg-gray-700 rounded-xl p-4">
+                        <div className="text-sm font-medium text-gray-900 dark:text-white mb-3">Product: Women's Classic T-shirt</div>
+                        <div className="flex justify-center items-center py-6">
+                          <div className="w-28 h-28 rounded-full bg-indigo-100 dark:bg-indigo-900 flex items-center justify-center">
+                            <div className="text-center">
+                              <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400">M</div>
+                              <div className="text-xs text-gray-700 dark:text-gray-300">98% match</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="text-sm text-center text-gray-600 dark:text-gray-400 mt-2">
+                          Perfect fit based on your measurements
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex gap-3">
+                      <button 
+                        className="flex-1 bg-indigo-600 text-white rounded-full py-3 text-sm font-medium"
+                        aria-label="Add to Cart"
+                      >
+                        Add to Cart
+                      </button>
+                      <button 
+                        className="w-12 h-12 bg-indigo-100 dark:bg-gray-700 rounded-full flex items-center justify-center"
+                        aria-label="View size alternatives"
+                        title="View size alternatives"
+                      >
+                        <FaExchangeAlt className="text-indigo-600 dark:text-indigo-400" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
