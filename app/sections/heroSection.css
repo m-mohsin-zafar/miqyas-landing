@@ -1,0 +1,54 @@
+@keyframes delayed-pulse-1 {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes delayed-pulse-2 {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes slow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slow-bounce-delayed {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.delayed-pulse-1 {
+  animation: delayed-pulse-1 2s infinite;
+  animation-delay: 0.2s;
+}
+
+.delayed-pulse-2 {
+  animation: delayed-pulse-2 2s infinite;
+  animation-delay: 0.4s;
+}
+
+.slow-bounce {
+  animation: slow-bounce 3s infinite;
+}
+
+.slow-bounce-delayed {
+  animation: slow-bounce-delayed 4s infinite;
+  animation-delay: 1s;
+}

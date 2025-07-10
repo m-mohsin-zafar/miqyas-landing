@@ -54,6 +54,19 @@
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
+  
+  /* Responsive spacing variables */
+  --section-spacing-xs: 1rem;
+  --section-spacing-sm: 1.5rem;
+  --section-spacing-md: 2rem;
+  --section-spacing-lg: 3rem;
+  --section-spacing-xl: 4rem;
+  
+  --content-padding-xs: 0.75rem;
+  --content-padding-sm: 1rem;
+  --content-padding-md: 1.5rem;
+  --content-padding-lg: 2rem;
+  --content-padding-xl: 3rem;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
@@ -128,9 +141,48 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline-color: rgba(var(--ring), 0.5);
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+/* Responsive spacing utility classes */
+.responsive-container {
+  padding-left: var(--content-padding-xs);
+  padding-right: var(--content-padding-xs);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .responsive-container {
+    padding-left: var(--content-padding-sm);
+    padding-right: var(--content-padding-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-container {
+    padding-left: var(--content-padding-md);
+    padding-right: var(--content-padding-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-container {
+    padding-left: var(--content-padding-lg);
+    padding-right: var(--content-padding-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-container {
+    padding-left: var(--content-padding-xl);
+    padding-right: var(--content-padding-xl);
   }
 }
