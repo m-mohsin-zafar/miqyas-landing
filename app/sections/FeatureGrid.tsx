@@ -2,14 +2,18 @@
 
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
-import { getFeatureGridContent } from '../utils/contentLoader';
 import { DynamicIcon } from '../utils/iconUtils';
+import { Dictionary } from '../i18n/types';
 
-export default function FeatureGrid() {
+interface FeatureGridProps {
+  dictionary: Dictionary;
+}
+
+export default function FeatureGrid({ dictionary }: FeatureGridProps) {
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
   
-  // Load content from JSON
-  const { features } = getFeatureGridContent();
+  // Use features from dictionary instead of JSON file
+  const features = dictionary.features.allFeatures || [];
   
   return (
     <section className="py-24 px-4 md:px-16 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
@@ -19,14 +23,13 @@ export default function FeatureGrid() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-center mb-16">
-          <span className="px-4 py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-sm font-medium mb-4 shadow-sm">Why MIQYAS</span>
+          <span className="px-4 py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-sm font-medium mb-4 shadow-sm">{dictionary.features.badge || "Why MIQYAS"}</span>
           <h2 className="text-3xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white drop-shadow-sm">
-            Features That <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Transform</span> Sizing
+            {dictionary.features.title} <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{dictionary.features.highlight || "Transform"}</span> {dictionary.features.titleEnd || "Sizing"}
           </h2>
           <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 to-blue-400 mt-6 rounded-full shadow-sm"></div>
           <p className="text-gray-600 dark:text-gray-300 text-center max-w-3xl mt-6">
-            Our AI-powered sizing solution offers a comprehensive suite of features designed to reduce returns, 
-            increase conversions, and enhance the customer experience.
+            {dictionary.features.description || "Our AI-powered sizing solution offers a comprehensive suite of features designed to reduce returns, increase conversions, and enhance the customer experience."}
           </p>
         </div>
         
@@ -67,7 +70,7 @@ export default function FeatureGrid() {
         
         <div className="mt-16 text-center">
           <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-medium rounded-full shadow-lg hover:shadow-xl transition-shadow">
-            <span>Explore All Features</span>
+            <span>{dictionary.features.exploreAllFeatures || "Explore All Features"}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M4.16669 10H15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M10 4.16669L15.8333 10.0001L10 15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

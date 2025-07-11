@@ -5,8 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../components/ui/button";
 import { FaTwitter, FaLinkedinIn, FaGithub, FaInstagram, FaEnvelope, FaArrowRight } from "react-icons/fa";
+import { Dictionary } from '../i18n/types';
 
-export default function Footer() {
+interface FooterProps {
+  dictionary: Dictionary;
+}
+
+export default function Footer({ dictionary }: FooterProps) {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   
@@ -34,9 +39,9 @@ export default function Footer() {
         <div className="bg-white/10 dark:bg-white/5 backdrop-blur-md rounded-2xl p-8 md:p-12 mb-12 shadow-xl border border-white/10">
           <div className="flex flex-col md:flex-row gap-8 justify-between items-center">
             <div className="max-w-xl">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">Stay in the loop</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-3">{dictionary.footer.newsletter.title}</h3>
               <p className="text-indigo-100 dark:text-gray-300">
-                Subscribe to our newsletter for the latest updates, sizing tips, and exclusive early access.
+                {dictionary.footer.newsletter.description}
               </p>
             </div>
             
@@ -50,7 +55,7 @@ export default function Footer() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
+                    placeholder={dictionary.footer.newsletter.placeholder}
                     className="w-full sm:w-64 md:w-72 px-4 py-3 pl-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/30 text-white placeholder-indigo-200"
                     required
                   />
@@ -59,12 +64,12 @@ export default function Footer() {
                   type="submit" 
                   className="bg-white text-indigo-700 hover:bg-indigo-100 font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors"
                 >
-                  Subscribe <FaArrowRight />
+                  {dictionary.footer.newsletter.button} <FaArrowRight />
                 </Button>
               </form>
               {subscribed && (
                 <div className="mt-3 text-green-300 text-sm animate-fadeIn">
-                  Thank you for subscribing! Check your inbox soon.
+                  {dictionary.footer.newsletter.success}
                 </div>
               )}
             </div>
@@ -80,7 +85,7 @@ export default function Footer() {
                 <span className="font-extrabold text-2xl tracking-tight">MIQYAS</span>
               </Link>
               <p className="mt-4 text-sm text-indigo-200 dark:text-gray-400 max-w-xs">
-                Next-generation AI sizing solutions for fashion retailers and online shoppers. Perfect fit, every time.
+                {dictionary.footer.company.about}
               </p>
             </div>
             
@@ -102,41 +107,41 @@ export default function Footer() {
           
           {/* Navigation links */}
           <div>
-            <h4 className="font-bold text-lg mb-4">Product</h4>
+            <h4 className="font-bold text-lg mb-4">{dictionary.footer.links.product}</h4>
             <ul className="space-y-3 text-indigo-200 dark:text-gray-400">
-              <li><Link href="#features" className="hover:text-white transition-colors">Features</Link></li>
-              <li><Link href="#how-it-works" className="hover:text-white transition-colors">How it Works</Link></li>
-              <li><Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-              <li><Link href="#faq" className="hover:text-white transition-colors">FAQ</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Sizing Guide</Link></li>
+              <li><Link href="#features" className="hover:text-white transition-colors">{dictionary.footer.links.features}</Link></li>
+              <li><Link href="#how-it-works" className="hover:text-white transition-colors">{dictionary.footer.links.howItWorks}</Link></li>
+              <li><Link href="#pricing" className="hover:text-white transition-colors">{dictionary.footer.links.pricing}</Link></li>
+              <li><Link href="#faq" className="hover:text-white transition-colors">{dictionary.footer.links.faq}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.sizingGuide}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-bold text-lg mb-4">Resources</h4>
+            <h4 className="font-bold text-lg mb-4">{dictionary.footer.links.resources}</h4>
             <ul className="space-y-3 text-indigo-200 dark:text-gray-400">
-              <li><Link href="#" className="hover:text-white transition-colors">Documentation</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">API Reference</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Blog</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Partners</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.documentation}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.apiReference}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.caseStudies}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.blog}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.partners}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-bold text-lg mb-4">Company</h4>
+            <h4 className="font-bold text-lg mb-4">{dictionary.footer.links.company}</h4>
             <ul className="space-y-3 text-indigo-200 dark:text-gray-400">
-              <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Press Kit</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.aboutUs}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.careers}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.contact}</Link></li>
+              <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.pressKit}</Link></li>
             </ul>
             
             <div className="mt-6 pt-6 border-t border-white/20">
-              <h4 className="font-bold text-lg mb-4">Legal</h4>
+              <h4 className="font-bold text-lg mb-4">{dictionary.footer.links.legal}</h4>
               <ul className="space-y-3 text-indigo-200 dark:text-gray-400">
-                <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
+                <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.privacyPolicy}</Link></li>
+                <li><Link href="#" className="hover:text-white transition-colors">{dictionary.footer.links.termsOfService}</Link></li>
               </ul>
             </div>
           </div>
@@ -145,13 +150,13 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row gap-4 justify-between items-center">
           <p className="text-sm text-indigo-200 dark:text-gray-400">
-            © {currentYear} MIQYAS. All rights reserved.
+            {dictionary.footer.copyright.replace('2025', currentYear.toString())}
           </p>
           
           <div className="flex items-center gap-3">
-            <span className="text-xs bg-indigo-700 dark:bg-indigo-800/60 py-1 px-3 rounded-full text-indigo-100">Beta</span>
+            <span className="text-xs bg-indigo-700 dark:bg-indigo-800/60 py-1 px-3 rounded-full text-indigo-100">{dictionary.footer.beta}</span>
             <span className="text-xs md:text-sm text-indigo-200 dark:text-gray-400">
-              Launching soon — be the first to try next-gen AI sizing.
+              {dictionary.footer.launchingSoon}
             </span>
           </div>
         </div>

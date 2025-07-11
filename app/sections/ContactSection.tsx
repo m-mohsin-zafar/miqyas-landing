@@ -7,10 +7,16 @@ import {
   FaGlobe, FaCheck, FaSpinner, FaPaperPlane
 } from 'react-icons/fa';
 import { Button } from "../components/ui/button";
+import { Dictionary } from '../i18n/types';
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  dictionary: Dictionary;
+}
+
+export default function ContactSection({ dictionary }: ContactSectionProps) {
+  const contactSection = dictionary.contactSection;
   // Form state
   const [formData, setFormData] = useState({
     name: '',
@@ -93,41 +99,41 @@ export default function ContactSection() {
   const formFields = [
     {
       name: 'name',
-      label: 'Full Name',
+      label: contactSection.formLabels.name,
       type: 'text',
-      placeholder: 'John Doe',
+      placeholder: contactSection.formPlaceholders.name,
       required: true,
       icon: <FaUser className="text-indigo-500" />,
     },
     {
       name: 'email',
-      label: 'Email Address',
+      label: contactSection.formLabels.email,
       type: 'email',
-      placeholder: 'john@example.com',
+      placeholder: contactSection.formPlaceholders.email,
       required: true,
       icon: <FaEnvelope className="text-indigo-500" />,
     },
     {
       name: 'company',
-      label: 'Company',
+      label: contactSection.formLabels.company,
       type: 'text',
-      placeholder: 'Your Company',
+      placeholder: contactSection.formPlaceholders.company,
       required: false,
       icon: <FaBuilding className="text-indigo-500" />,
     },
     {
       name: 'phone',
-      label: 'Phone Number',
+      label: contactSection.formLabels.phone,
       type: 'tel',
-      placeholder: '+1 (123) 456-7890',
+      placeholder: contactSection.formPlaceholders.phone,
       required: false,
       icon: <FaPhone className="text-indigo-500" />,
     },
     {
       name: 'website',
-      label: 'Website URL',
+      label: contactSection.formLabels.website,
       type: 'url',
-      placeholder: 'https://yourwebsite.com',
+      placeholder: contactSection.formPlaceholders.website,
       required: false,
       icon: <FaGlobe className="text-indigo-500" />,
     }
@@ -143,13 +149,13 @@ export default function ContactSection() {
         {/* Section header */}
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 shadow-sm">
-            Get Started
+            {contactSection.badge}
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 text-gray-900 dark:text-white">
-            Request a <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Demo</span>
+            {contactSection.heading.split(' ').slice(0, -1).join(' ')} <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{contactSection.heading.split(' ').pop()}</span>
           </h2>
           <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Let us show you how MIQYAS can transform your sizing experience and boost your sales
+            {contactSection.subheading}
           </p>
         </div>
         
@@ -162,9 +168,9 @@ export default function ContactSection() {
                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-4 md:mb-6">
                   <FaCheck className="text-xl sm:text-2xl text-green-600 dark:text-green-400" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">Thank You!</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-3 md:mb-4">{contactSection.successMessage.title}</h3>
                 <p className="text-center text-sm sm:text-base text-gray-600 dark:text-gray-300">
-                  We've received your request and will contact you shortly to schedule your personalized demo.
+                  {contactSection.successMessage.message}
                 </p>
               </div>
             ) : (
@@ -172,10 +178,12 @@ export default function ContactSection() {
                 {/* Request type options */}
                 <div className="mb-5 md:mb-8">
                   <label className="block text-gray-700 dark:text-gray-200 font-medium text-sm sm:text-base mb-2 md:mb-3">
-                    I'm interested in:
+                    {contactSection.formLabels.requestType}
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3">
-                    {['demo', 'pricing', 'partnership', 'other'].map((type) => (
+                    {contactSection.requestTypes.map((label, index) => {
+                      const type = ['demo', 'pricing', 'partnership', 'other'][index];
+                      return (
                       <div 
                         key={type}
                         onClick={() => handleRadioChange('requestType', type)}
@@ -187,23 +195,20 @@ export default function ContactSection() {
                           }
                         `}
                       >
-                        {type.charAt(0).toUpperCase() + type.slice(1)}
+                        {label}
                       </div>
-                    ))}
+                    );
+                    })}
                   </div>
                 </div>
                 
                 {/* Market type */}
                 <div className="mb-5 md:mb-8">
                   <label className="block text-gray-700 dark:text-gray-200 font-medium text-sm sm:text-base mb-2 md:mb-3">
-                    I represent:
+                    {contactSection.formLabels.marketType}
                   </label>
                   <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                    {[
-                      { value: 'retailer', label: 'A Retailer' },
-                      { value: 'consumer', label: 'A Consumer' },
-                      { value: 'both', label: 'Both' }
-                    ].map((option) => (
+                    {contactSection.marketTypes.map((option) => (
                       <div 
                         key={option.value}
                         onClick={() => handleRadioChange('marketType', option.value)}
@@ -257,14 +262,14 @@ export default function ContactSection() {
                     htmlFor="message" 
                     className="block text-gray-700 dark:text-gray-200 font-medium mb-1.5 sm:mb-2 text-sm"
                   >
-                    Message
+                    {contactSection.formLabels.message}
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us a bit about your needs..."
+                    placeholder={contactSection.formPlaceholders.message}
                     rows={3}
                     className="w-full p-3 sm:p-4 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 text-gray-700 dark:text-gray-200 text-xs sm:text-sm"
                   ></textarea>
@@ -273,7 +278,7 @@ export default function ContactSection() {
                 {/* Error message */}
                 {errorMessage && (
                   <div className="mb-4 sm:mb-6 p-2 sm:p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300 text-xs sm:text-sm">
-                    {errorMessage}
+                    {contactSection.errorMessage}
                   </div>
                 )}
                 
@@ -286,18 +291,18 @@ export default function ContactSection() {
                   {formStatus === 'submitting' ? (
                     <>
                       <FaSpinner className="animate-spin text-sm sm:text-base" />
-                      <span>Submitting...</span>
+                      <span>{contactSection.submittingText}</span>
                     </>
                   ) : (
                     <>
                       <FaPaperPlane className="text-sm sm:text-base" />
-                      <span>Request Demo</span>
+                      <span>{contactSection.submitButton}</span>
                     </>
                   )}
                 </Button>
                 
                 <p className="text-xs text-gray-500 dark:text-gray-400 text-center mt-3 sm:mt-4">
-                  By submitting this form, you agree to our Privacy Policy and Terms of Service.
+                  {contactSection.privacyText}
                 </p>
               </form>
             )}
@@ -307,7 +312,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-5 sm:gap-6 md:gap-8">
             {/* Contact info */}
             <div className="bg-gradient-to-r from-indigo-600 to-blue-600 dark:from-indigo-800 dark:to-blue-800 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl p-5 sm:p-6 md:p-8 text-white">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6">Contact Information</h3>
+              <h3 className="text-xl sm:text-2xl font-bold mb-4 md:mb-6">{contactSection.contactInfo.title}</h3>
               
               <div className="space-y-4 md:space-y-6">
                 <div className="flex items-start gap-3 md:gap-4">
@@ -316,9 +321,9 @@ export default function ContactSection() {
                     <FaEnvelope size={16} className="hidden sm:block" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">Email Us</h4>
-                    <a href="mailto:demo@miqyas.com" className="text-base sm:text-lg hover:underline">
-                      demo@miqyas.com
+                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">{contactSection.contactInfo.email.label}</h4>
+                    <a href={`mailto:${contactSection.contactInfo.email.value}`} className="text-base sm:text-lg hover:underline">
+                      {contactSection.contactInfo.email.value}
                     </a>
                   </div>
                 </div>
@@ -329,9 +334,9 @@ export default function ContactSection() {
                     <FaPhone size={16} className="hidden sm:block" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">Call Us</h4>
-                    <a href="tel:+11234567890" className="text-base sm:text-lg hover:underline">
-                      +1 (123) 456-7890
+                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">{contactSection.contactInfo.phone.label}</h4>
+                    <a href={`tel:${contactSection.contactInfo.phone.value.replace(/[^0-9+]/g, '')}`} className="text-base sm:text-lg hover:underline">
+                      {contactSection.contactInfo.phone.value}
                     </a>
                   </div>
                 </div>
@@ -342,11 +347,13 @@ export default function ContactSection() {
                     <FaBuilding size={16} className="hidden sm:block" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">Visit Us</h4>
+                    <h4 className="font-medium text-white/80 mb-0.5 md:mb-1 text-sm md:text-base">{contactSection.contactInfo.address.label}</h4>
                     <address className="text-base sm:text-lg not-italic">
-                      MIQYAS HQ<br />
-                      123 Tech Blvd, Suite 500<br />
-                      San Francisco, CA 94105
+                      {contactSection.contactInfo.address.value.split(',').map((line, i) => (
+                        <React.Fragment key={i}>
+                          {line.trim()}{i < contactSection.contactInfo.address.value.split(',').length - 1 && <br />}
+                        </React.Fragment>
+                      ))}
                     </address>
                   </div>
                 </div>
@@ -354,47 +361,37 @@ export default function ContactSection() {
             </div>
             
             {/* Benefits */}
-            <div className="bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl p-5 sm:p-6 md:p-8 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">
-                What to Expect
-              </h3>
+            <div className="bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 md:mb-6">{contactSection.benefits.title}</h3>
               
-              <ul className="space-y-3 md:space-y-5">
-                {[
-                  "Personalized 30-minute demo tailored to your business needs",
-                  "Live walkthrough of the MIQYAS dashboard and API",
-                  "Discussion of implementation options and timeline",
-                  "Q&A session with our product specialists",
-                  "Custom pricing proposal based on your requirements"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start gap-2 md:gap-4">
-                    <div className="p-0.5 sm:p-1 bg-indigo-100 dark:bg-indigo-900/30 rounded-full mt-0.5">
-                      <FaCheck className="text-indigo-600 dark:text-indigo-400" size={12} />
+              <ul className="space-y-3 md:space-y-4">
+                {contactSection.benefits.items.map((benefit, index) => (
+                  <li key={index} className="flex items-start gap-2 md:gap-3">
+                    <div className="p-1 md:p-1.5 bg-green-100 dark:bg-green-900/30 rounded-full mt-0.5">
+                      <FaCheck className="text-green-600 dark:text-green-400 text-xs md:text-sm" />
                     </div>
-                    <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
-                      {item}
-                    </span>
+                    <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300">
+                      <span className="font-medium text-gray-900 dark:text-white">{benefit.title}:</span> {benefit.description}
+                    </div>
                   </li>
                 ))}
               </ul>
-              
-              <div className="mt-5 md:mt-8 pt-4 md:pt-6 border-t border-gray-100 dark:border-gray-700">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-1 md:mb-2 text-sm md:text-base">
-                  Ready to get started?
-                </h4>
-                <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
-                  Our team typically responds within 24 hours to schedule your demo.
-                </p>
-              </div>
+            </div>
+            
+            {/* FAQ note */}
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800 rounded-xl md:rounded-2xl p-5 sm:p-6 md:p-8">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">{contactSection.faqNote.title}</h3>
+              <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4 md:mb-6">
+                {contactSection.faqNote.description}
+              </p>
+              <Button 
+                onClick={() => window.location.href = '#faq'}
+                className="py-2 sm:py-2.5 px-4 sm:px-5 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm sm:text-base rounded-lg inline-flex items-center gap-1.5 sm:gap-2 transition-colors"
+              >
+                {contactSection.faqNote.buttonText}
+              </Button>
             </div>
           </div>
-        </div>
-        
-        {/* FAQ note */}
-        <div className="mt-10 md:mt-16 text-center">
-          <p className="text-sm md:text-base text-gray-600 dark:text-gray-300">
-            Have more questions? Check our <a href="#faq" className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">FAQ section</a> or reach out to our support team.
-          </p>
         </div>
       </div>
     </section>

@@ -4,38 +4,22 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import { Button } from "../components/ui/button";
 import CTAButton from "../components/CTAButton";
-import { FiChevronLeft, FiChevronRight, FiStar } from 'react-icons/fi';
-import { FaStar, FaQuoteLeft, FaAward, FaFileAlt } from 'react-icons/fa';
+import { FaQuoteLeft, FaStar, FaFileAlt, FaAward, FaAngleRight } from 'react-icons/fa';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { FcBullish, FcApproval, FcShipped, FcGlobe } from 'react-icons/fc';
+import { Dictionary } from '../i18n/types';
 
-export default function SocialProof() {
+interface SocialProofProps {
+  dictionary: Dictionary;
+}
+
+export default function SocialProof({ dictionary }: SocialProofProps) {
+  const socialProof = dictionary.socialProof;
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
-  // Sample testimonials data
-  const testimonials = [
-    {
-      quote: "Returns dropped by 40% since implementing MIQYAS. The integration was seamless and our customers love the accuracy.",
-      name: "Sarah Johnson",
-      title: "E-commerce Manager, FashionHub",
-      rating: 5,
-      image: "/placeholder-avatar-1.png"
-    },
-    {
-      quote: "Our conversion rates have gone up by 23% in just three months. MIQYAS has been a game changer for our online store.",
-      name: "Michael Chen",
-      title: "CTO, StyleBoutique",
-      rating: 5,
-      image: "/placeholder-avatar-2.png"
-    },
-    {
-      quote: "The data insights are incredible. We've reduced our carbon footprint by cutting down on returns and our customers are happier.",
-      name: "Jessica Williams",
-      title: "Sustainability Lead, EcoWear",
-      rating: 4,
-      image: "/placeholder-avatar-3.png"
-    }
-  ];
+  // Get testimonials from dictionary
+  const testimonials = socialProof.testimonials.items;
 
   // Navigate testimonials
   const handleNextTestimonial = () => {
@@ -68,57 +52,42 @@ export default function SocialProof() {
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-16">
           <div className="inline-block px-3 py-1 mb-3 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-xs md:text-sm font-medium shadow-sm">
-            Success Stories
+            {socialProof.badge}
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">Results That Speak For Themselves</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">{socialProof.heading}</h2>
           <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Join thousands of satisfied retailers and shoppers who have transformed their sizing experience
+            {socialProof.subheading}
           </p>
         </div>
 
         {/* Stats Grid Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-12 md:mb-16">
-          <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-center mb-2 md:mb-3">
-              <FcBullish size={30} className="text-indigo-500 sm:hidden" />
-              <FcBullish size={40} className="text-indigo-500 hidden sm:block" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-indigo-600 dark:text-indigo-400">87%</h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-1 md:mt-2 text-xs sm:text-sm md:text-base">Reduction in return rates</p>
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-center mb-2 md:mb-3">
-              <FcApproval size={30} className="text-green-500 sm:hidden" />
-              <FcApproval size={40} className="text-green-500 hidden sm:block" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-green-600 dark:text-green-400">98.5%</h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-1 md:mt-2 text-xs sm:text-sm md:text-base">Size recommendation accuracy</p>
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-center mb-2 md:mb-3">
-              <FcShipped size={30} className="text-blue-500 sm:hidden" />
-              <FcShipped size={40} className="text-blue-500 hidden sm:block" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-blue-600 dark:text-blue-400">23%</h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-1 md:mt-2 text-xs sm:text-sm md:text-base">Increase in conversions</p>
-          </div>
-          
-          <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-center mb-2 md:mb-3">
-              <FcGlobe size={30} className="text-purple-500 sm:hidden" />
-              <FcGlobe size={40} className="text-purple-500 hidden sm:block" />
-            </div>
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-purple-600 dark:text-purple-400">45+</h3>
-            <p className="text-center text-gray-600 dark:text-gray-300 mt-1 md:mt-2 text-xs sm:text-sm md:text-base">Countries reached</p>
-          </div>
+          {socialProof.stats.map((stat, index) => {
+            // Define icons and colors based on index
+            const icons = [
+              { small: <FcBullish size={30} className="text-indigo-500 sm:hidden" />, large: <FcBullish size={40} className="text-indigo-500 hidden sm:block" />, color: "text-indigo-600 dark:text-indigo-400" },
+              { small: <FcApproval size={30} className="text-green-500 sm:hidden" />, large: <FcApproval size={40} className="text-green-500 hidden sm:block" />, color: "text-green-600 dark:text-green-400" },
+              { small: <FcShipped size={30} className="text-blue-500 sm:hidden" />, large: <FcShipped size={40} className="text-blue-500 hidden sm:block" />, color: "text-blue-600 dark:text-blue-400" },
+              { small: <FcGlobe size={30} className="text-purple-500 sm:hidden" />, large: <FcGlobe size={40} className="text-purple-500 hidden sm:block" />, color: "text-purple-600 dark:text-purple-400" }
+            ];
+            
+            return (
+              <div key={index} className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="flex items-center justify-center mb-2 md:mb-3">
+                  {icons[index].small}
+                  {icons[index].large}
+                </div>
+                <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold text-center ${icons[index].color}`}>{stat.value}</h3>
+                <p className="text-center text-gray-600 dark:text-gray-300 mt-1 md:mt-2 text-xs sm:text-sm md:text-base">{stat.label}</p>
+              </div>
+            );
+          })}
         </div>
 
         {/* Testimonials Carousel */}
         <div className="mb-12 md:mb-20 relative">
           <div className="text-center mb-5 md:mb-8">
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 md:mb-2">What Our Partners Say</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-1 md:mb-2">{socialProof.testimonials.heading}</h3>
           </div>
           
           <div className="flex justify-center">
@@ -203,7 +172,7 @@ export default function SocialProof() {
 
         {/* Partners & Logo Wall */}
         <div className="mb-10 md:mb-16">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 md:mb-8">Trusted By Leading Brands</h3>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-5 md:mb-8">{socialProof.partners.heading}</h3>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap justify-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
             {[...Array(6)].map((_, i) => (
@@ -225,12 +194,12 @@ export default function SocialProof() {
           <div className="bg-white dark:bg-gray-800 p-4 md:p-6 rounded-xl shadow">
             <h3 className="text-lg md:text-xl font-bold mb-3 md:mb-4 flex items-center gap-2">
               <span className="bg-indigo-100 dark:bg-indigo-900 p-1.5 md:p-2 rounded-lg text-base md:text-lg">📰</span>
-              Press Mentions
+              {socialProof.press.heading}
             </h3>
             
             <div className="flex flex-wrap gap-2 md:gap-4 items-center">
-              <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">Featured in:</span>
-              {["TechCrunch", "Vogue", "WWD", "Forbes"].map((name, i) => (
+              <span className="text-xs md:text-sm text-gray-500 dark:text-gray-400">{socialProof.press.featuredIn}</span>
+              {socialProof.press.publications.map((name, i) => (
                 <div 
                   key={i} 
                   className="px-3 md:px-4 py-1.5 md:py-2 bg-gray-100 dark:bg-gray-700 rounded text-gray-600 dark:text-gray-300 text-xs md:text-sm font-medium"
@@ -248,14 +217,14 @@ export default function SocialProof() {
               <div>
                 <div className="flex items-center gap-2 mb-2 md:mb-3">
                   <FaFileAlt className="text-blue-500" size={16} />
-                  <h3 className="font-bold text-base md:text-lg">Research</h3>
+                  <h3 className="font-bold text-base md:text-lg">{socialProof.research.heading}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
-                  92% accuracy in sizing prediction across all body types
+                  {socialProof.research.description}
                 </p>
               </div>
               <Button variant="outline" className="mt-3 w-full text-xs md:text-sm py-1 h-8 md:h-9">
-                Download Whitepaper
+                {socialProof.research.buttonText}
               </Button>
             </div>
             
@@ -264,29 +233,29 @@ export default function SocialProof() {
               <div>
                 <div className="flex items-center gap-2 mb-2 md:mb-3">
                   <FaAward className="text-yellow-500" size={16} />
-                  <h3 className="font-bold text-base md:text-lg">Awards</h3>
+                  <h3 className="font-bold text-base md:text-lg">{socialProof.awards.heading}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400">
-                  RetailTech Innovation Award 2023
+                  {socialProof.awards.description}
                 </p>
               </div>
               <Button variant="outline" className="mt-3 w-full text-xs md:text-sm py-1 h-8 md:h-9">
-                See All Awards
+                {socialProof.awards.buttonText}
               </Button>
             </div>
           </div>
         </div>
-
+        
         {/* CTA Banner */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-800 dark:to-purple-800 rounded-xl md:rounded-2xl p-6 sm:p-7 md:p-8 lg:p-12 text-center text-white">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-4">Ready to transform your sizing experience?</h3>
-          <p className="mb-5 md:mb-8 text-indigo-100 dark:text-indigo-200 text-sm md:text-base">Join the retailers who have increased sales and customer satisfaction with MIQYAS</p>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-4">{socialProof.cta.heading}</h3>
+          <p className="mb-5 md:mb-8 text-indigo-100 dark:text-indigo-200 text-sm md:text-base">{socialProof.cta.subheading}</p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
             <CTAButton primary href="#contact">
-              Request Demo
+              {socialProof.cta.primaryButton}
             </CTAButton>
             <CTAButton href="#case-studies">
-              View Case Studies
+              {socialProof.cta.secondaryButton}
             </CTAButton>
           </div>
         </div>

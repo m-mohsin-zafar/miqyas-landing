@@ -11,8 +11,14 @@ import {
 } from "@/app/components/ui/dialog";
 import { Button } from "@/app/components/ui/button";
 import { FaRocket, FaGift } from 'react-icons/fa';
+import { Dictionary } from '../i18n/types';
 
-export default function LaunchModal() {
+interface LaunchModalProps {
+  dictionary: Dictionary;
+}
+
+export default function LaunchModal({ dictionary }: LaunchModalProps) {
+  const modal = dictionary.launchModal;
   // Use a single isMounted state to prevent hydration issues
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -70,21 +76,20 @@ export default function LaunchModal() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-500 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
                 </span>
-                Coming Soon
+                {modal.badge}
               </span>
             </div>
             
             <DialogTitle className="text-xl sm:text-2xl font-bold text-center">
-              <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">MIQYAS</span>
-              <span className="relative ml-1 inline-block">
-                <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
-                  Launching Soon
+              {modal.title.split(' ').map((word, index) => (
+                <span key={index} className={index === 0 ? "bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent" : "relative ml-1 inline-block bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent"}>
+                  {word}{' '}
                 </span>
-              </span>
+              ))}
             </DialogTitle>
             
             <DialogDescription className="text-center text-xs sm:text-sm mt-2 text-gray-600 dark:text-gray-300">
-              Be among the first to experience our AI sizing technology
+              {modal.description}
             </DialogDescription>
           </DialogHeader>
         
@@ -97,9 +102,9 @@ export default function LaunchModal() {
                 <FaRocket className="text-xs sm:text-sm" />
               </div>
               <div>
-                <h4 className="font-semibold text-sm text-gray-900 dark:text-white">Launching Summer 2025</h4>
+                <h4 className="font-semibold text-sm text-gray-900 dark:text-white">{modal.launchInfo.timing}</h4>
                 <p className="text-gray-600 dark:text-gray-300 mt-0.5 text-xs">
-                  Join our waitlist for early access & special benefits.
+                  {modal.launchInfo.waitlistText}
                 </p>
               </div>
             </div>
@@ -112,16 +117,14 @@ export default function LaunchModal() {
                 <FaGift className="text-xs sm:text-sm" />
               </div>
               <div>
-                <h4 className="font-medium text-sm text-gray-900 dark:text-white">Waitlist Benefits</h4>
+                <h4 className="font-medium text-sm text-gray-900 dark:text-white">{modal.benefits.title}</h4>
                 <ul className="mt-1 space-y-0.5 text-xs text-gray-600 dark:text-gray-300">
-                  <li className="flex items-center gap-1">
-                    <span className="w-1 h-1 bg-indigo-500 rounded-full"></span>
-                    <span>Early access & priority onboarding</span>
-                  </li>
-                  <li className="flex items-center gap-1">
-                    <span className="w-1 h-1 bg-indigo-500 rounded-full"></span>
-                    <span>Special founding member pricing</span>
-                  </li>
+                  {modal.benefits.items.map((item, index) => (
+                    <li key={index} className="flex items-center gap-1">
+                      <span className="w-1 h-1 bg-indigo-500 rounded-full"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -134,7 +137,7 @@ export default function LaunchModal() {
             onClick={handleClose}
             className="flex-1 py-2 text-xs font-medium border hover:bg-gray-50 dark:hover:bg-gray-800"
           >
-            Explore First
+            {modal.buttons.explore}
           </Button>
           <Button 
             className="flex-1 py-2 text-xs font-medium bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white" 
@@ -146,7 +149,7 @@ export default function LaunchModal() {
               }, 100);
             }}
           >
-            <span>Join Waitlist</span>
+            <span>{modal.buttons.joinWaitlist}</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="ml-1.5 animate-pulse">
               <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M19 12H4.75" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>

@@ -6,45 +6,33 @@ import {
   FaSmile, FaSearch, FaExchangeAlt
 } from 'react-icons/fa';
 import { HiOutlineShoppingBag, HiOutlineShoppingCart } from 'react-icons/hi';
+import { Dictionary } from '../i18n/types';
 
-export default function AudienceSplit() {
+type AudienceSplitProps = {
+  dictionary: Dictionary;
+};
+
+export default function AudienceSplit({ dictionary }: AudienceSplitProps) {
   const [activeTab, setActiveTab] = useState('retailers');
+  const { audienceSplit } = dictionary;
 
-  const retailerBenefits = [
-    { 
-      icon: <FaBoxOpen className="text-white" />, 
-      title: 'Reduce Returns by 72%',
-      description: 'Lower return rates by helping customers choose the right size first time.'
-    },
-    { 
-      icon: <FaChartLine className="text-white" />, 
-      title: 'Increase Conversion Rates',
-      description: 'Remove size uncertainty from the purchase decision to boost conversion by up to 35%.'
-    },
-    { 
-      icon: <FaShoppingBag className="text-white" />, 
-      title: 'Build Customer Loyalty',
-      description: 'Create lasting relationships with shoppers who trust your sizing recommendations.'
-    }
-  ];
+  // Define icons for benefits
+  const retailerIcons = [<FaBoxOpen className="text-white" />, <FaChartLine className="text-white" />, <FaShoppingBag className="text-white" />];
+  const shopperIcons = [<FaSmile className="text-white" />, <FaSearch className="text-white" />, <FaTshirt className="text-white" />];
 
-  const shopperBenefits = [
-    { 
-      icon: <FaSmile className="text-white" />, 
-      title: 'Shop with Confidence',
-      description: 'Never worry about ordering the wrong size again with AI recommendations.'
-    },
-    { 
-      icon: <FaSearch className="text-white" />, 
-      title: 'Find Perfect Fits',
-      description: 'Discover brands and styles that match your unique body measurements.'
-    },
-    { 
-      icon: <FaTshirt className="text-white" />, 
-      title: 'Save Time & Hassle',
-      description: 'Eliminate the need for returns and exchanges due to sizing issues.'
-    }
-  ];
+  // Map retailer benefits with icons
+  const retailerBenefits = audienceSplit.retailerBenefits.map((benefit, index) => ({
+    icon: retailerIcons[index],
+    title: benefit.title,
+    description: benefit.description
+  }));
+
+  // Map shopper benefits with icons
+  const shopperBenefits = audienceSplit.shopperBenefits.map((benefit, index) => ({
+    icon: shopperIcons[index],
+    title: benefit.title,
+    description: benefit.description
+  }));
   
   return (
     <section className="py-8 sm:py-12 md:py-16 lg:py-20 px-3 sm:px-4 md:px-6 lg:px-8 bg-gradient-to-b from-white to-indigo-50/50 dark:from-gray-900 dark:to-indigo-950/30 relative overflow-hidden">
@@ -54,14 +42,22 @@ export default function AudienceSplit() {
       
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="flex flex-col items-center mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-          <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 shadow-sm">For Everyone</span>
+          <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 shadow-sm">{audienceSplit.title.badge}</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold sm:font-extrabold text-center text-gray-900 dark:text-white drop-shadow-sm">
-            Tailored <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">Solutions</span> for All
+            {audienceSplit.title.heading.split(audienceSplit.title.highlight).map((part, i, arr) => (
+              <>
+                {part}
+                {i < arr.length - 1 && (
+                  <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+                    {audienceSplit.title.highlight}
+                  </span>
+                )}
+              </>
+            ))}
           </h2>
           <div className="w-16 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-indigo-600 to-blue-400 mt-4 sm:mt-6 rounded-full shadow-sm"></div>
           <p className="text-xs sm:text-sm md:text-base text-gray-600 dark:text-gray-300 text-center max-w-3xl mt-4 sm:mt-6">
-            Whether you're a retailer looking to reduce returns or a shopper seeking the perfect fit,
-            MIQYAS delivers value through intelligent sizing technology.
+            {audienceSplit.description}
           </p>
         </div>
         
@@ -76,7 +72,7 @@ export default function AudienceSplit() {
             }`}
           >
             <HiOutlineShoppingBag className="text-xs sm:text-sm" />
-            <span className="whitespace-nowrap">For Retailers</span>
+            <span className="whitespace-nowrap">{audienceSplit.tabs.retailers}</span>
           </button>
           <button 
             onClick={() => setActiveTab('shoppers')}
@@ -87,7 +83,7 @@ export default function AudienceSplit() {
             }`}
           >
             <HiOutlineShoppingCart className="text-xs sm:text-sm" />
-            <span className="whitespace-nowrap">For Shoppers</span>
+            <span className="whitespace-nowrap">{audienceSplit.tabs.shoppers}</span>
           </button>
         </div>
         
@@ -97,8 +93,8 @@ export default function AudienceSplit() {
           <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6">
             <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6 md:mb-8">
               {activeTab === 'retailers' ? 
-                'Grow Your Business with Smart Sizing' : 
-                'Never Worry About Fit Again'}
+                audienceSplit.retailerHeading : 
+                audienceSplit.shopperHeading}
             </h3>
             
             <div className="space-y-4 sm:space-y-6">
@@ -122,7 +118,7 @@ export default function AudienceSplit() {
             <div className="pt-4 sm:pt-6">
               <a href="#contact" className="inline-block">
                 <button className="px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-gradient-to-r from-indigo-600 to-blue-500 text-white text-xs sm:text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-shadow flex items-center gap-1.5 sm:gap-2">
-                  {activeTab === 'retailers' ? 'Get Started as a Retailer' : 'Try as a Shopper'} 
+                  {activeTab === 'retailers' ? audienceSplit.retailerCta : audienceSplit.shopperCta} 
                   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5">
                     <path d="M4.16669 10H15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     <path d="M10 4.16669L15.8333 10.0001L10 15.8334" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

@@ -1,0 +1,528 @@
+{
+  "launchModal": {
+    "badge": "Coming Soon",
+    "title": "MIQYAS Launching Soon",
+    "description": "Be among the first to experience our AI sizing technology",
+    "launchInfo": {
+      "timing": "Launching Summer 2025",
+      "waitlistText": "Join our waitlist for early access & special benefits."
+    },
+    "benefits": {
+      "title": "Waitlist Benefits",
+      "items": [
+        "Early access & priority onboarding",
+        "Special founding member pricing"
+      ]
+    },
+    "buttons": {
+      "explore": "Explore First",
+      "joinWaitlist": "Join Waitlist"
+    }
+  },
+  "navigation": {
+    "product": "Product",
+    "features": "Features",
+    "howItWorks": "How it Works",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "COMING SOON",
+    "headline": {
+      "main": "Cut Returns. Boost Sales.",
+      "highlight": "AI Sizing That Gets It Right"
+    },
+    "subheading": "For fashion brands, online stores, and shoppers who want a perfect fit with zero hassle.",
+    "ctaButtons": {
+      "demo": "Request a Demo",
+      "action": "See it in Action"
+    },
+    "compatibility": "Works with:"
+  },
+  "features": {
+    "title": "Features That",
+    "badge": "Why MIQYAS",
+    "highlight": "Transform",
+    "titleEnd": "Sizing",
+    "description": "Our AI-powered sizing solution offers a comprehensive suite of features designed to reduce returns, increase conversions, and enhance the customer experience.",
+    "feature1": {
+      "title": "AI-Powered Accuracy",
+      "description": "Our advanced algorithms provide up to 98% accurate size recommendations"
+    },
+    "feature2": {
+      "title": "Easy Integration",
+      "description": "Seamlessly integrates with your existing e-commerce platform"
+    },
+    "feature3": {
+      "title": "Reduce Returns",
+      "description": "Cut returns by up to 40% with precise sizing recommendations"
+    },
+    "exploreAllFeatures": "Explore All Features",
+    "allFeatures": [
+      { 
+        "icon": "FaRobot", 
+        "title": "AI Body Measurements", 
+        "desc": "Get accurate size recommendations with just a few data points—no hardware required.",
+        "color": "from-blue-500 to-indigo-600"
+      },
+      { 
+        "icon": "FaBolt", 
+        "title": "Fast Predict API", 
+        "desc": "Lightning-fast integration that takes days, not weeks. Get up and running quickly.",
+        "color": "from-amber-400 to-orange-500"
+      },
+      { 
+        "icon": "FaChartBar", 
+        "title": "Partner Dashboard", 
+        "desc": "Track sizing metrics, manage size charts, and access real-time analytics in one place.",
+        "color": "from-indigo-500 to-purple-600"
+      },
+      { 
+        "icon": "FaChartLine", 
+        "title": "Advanced Analytics", 
+        "desc": "Understand fit preferences, reduce return rates, and track customer engagement.",
+        "color": "from-green-500 to-emerald-600"
+      },
+      { 
+        "icon": "FaRuler", 
+        "title": "Flexible Sizing", 
+        "desc": "Use our ready-made templates or easily upload your brand's unique size charts.",
+        "color": "from-pink-500 to-rose-600"
+      },
+      { 
+        "icon": "FaPalette", 
+        "title": "Custom & White-label", 
+        "desc": "Customize the experience to match your brand, features, and integration needs.",
+        "color": "from-violet-500 to-purple-600"
+      },
+      { 
+        "icon": "FaShieldAlt", 
+        "title": "Privacy & Security", 
+        "desc": "100% online, GDPR compliant, with secure data handling and no physical hardware.",
+        "color": "from-blue-400 to-cyan-500"
+      },
+      { 
+        "icon": "FaHeadset", 
+        "title": "Support & Onboarding", 
+        "desc": "Get expert guidance and dedicated assistance throughout your integration journey.",
+        "color": "from-rose-500 to-red-600"
+      }
+    ]
+  },
+  "howItWorks": {
+    "title": {
+      "badge": "Simple Process",
+      "heading": "How MIQYAS Works",
+      "highlight": "MIQYAS"
+    },
+    "steps": [
+      {
+        "number": "1",
+        "title": "Start Shopping",
+        "description": "Customer visits your online store and browses your products"
+      },
+      {
+        "number": "2",
+        "title": "AI Measurement",
+        "description": "Our AI quickly estimates measurements from simple photos and data inputs"
+      },
+      {
+        "number": "3",
+        "title": "Size Match",
+        "description": "The system matches body measurements to the perfect size for each garment"
+      },
+      {
+        "number": "4",
+        "title": "Perfect Fit",
+        "description": "Customer receives clothing that fits perfectly right out of the package"
+      }
+    ],
+    "summary": "Our simple 4-step process ensures accurate sizing, reduces returns, and creates happy customers with minimal effort."
+  },
+  "audienceSplit": {
+    "title": {
+      "badge": "For Everyone",
+      "heading": "Tailored Solutions for All",
+      "highlight": "Solutions"
+    },
+    "description": "Whether you're a retailer looking to reduce returns or a shopper seeking the perfect fit, MIQYAS delivers value through intelligent sizing technology.",
+    "tabs": {
+      "retailers": "For Retailers",
+      "shoppers": "For Shoppers"
+    },
+    "retailerHeading": "Grow Your Business with Smart Sizing",
+    "shopperHeading": "Find Your Perfect Fit Every Time",
+    "retailerBenefits": [
+      {
+        "title": "Reduce Returns by 72%",
+        "description": "Lower return rates by helping customers choose the right size first time."
+      },
+      {
+        "title": "Increase Conversion Rates",
+        "description": "Remove size uncertainty from the purchase decision to boost conversion by up to 35%."
+      },
+      {
+        "title": "Build Customer Loyalty",
+        "description": "Create lasting relationships with shoppers who trust your sizing recommendations."
+      }
+    ],
+    "shopperBenefits": [
+      {
+        "title": "Shop with Confidence",
+        "description": "Never worry about ordering the wrong size again with AI recommendations."
+      },
+      {
+        "title": "Find Perfect Fits",
+        "description": "Discover brands and styles that match your unique body measurements."
+      },
+      {
+        "title": "Save Time & Hassle",
+        "description": "Eliminate the need for returns and exchanges due to sizing issues."
+      }
+    ],
+    "retailerCta": "Partner with MIQYAS",
+    "shopperCta": "Try MIQYAS Now"
+  },
+  "faqSection": {
+    "badge": "FAQ",
+    "heading": "Frequently Asked Questions",
+    "subheading": "Everything you need to know about MIQYAS and how it transforms online shopping",
+    "searchPlaceholder": "Search questions...",
+    "noResultsText": "No questions found matching your search.",
+    "clearSearch": "Clear search",
+    "categories": [
+      { "id": "all", "name": "All Questions" },
+      { "id": "accuracy", "name": "Accuracy" },
+      { "id": "integration", "name": "Integration" },
+      { "id": "customization", "name": "Customization" },
+      { "id": "security", "name": "Security & Privacy" }
+    ],
+    "faqs": [
+      {
+        "q": "How accurate is the sizing?",
+        "a": "Our AI system achieves over 98% accuracy in size recommendations through our unique algorithm trained on 100,000+ body scans. We continuously improve our models using real-world feedback to maintain high accuracy across all body types and clothing categories.",
+        "icon": "FaChartLine",
+        "iconColor": "text-indigo-500",
+        "category": "accuracy"
+      },
+      {
+        "q": "What platforms do you support?",
+        "a": "MIQYAS integrates seamlessly with all major e-commerce platforms including Shopify, WooCommerce, Magento, BigCommerce, and custom stores via our REST API. We offer plug-and-play modules for quick setup and developer-friendly documentation.",
+        "icon": "FaLaptopCode",
+        "iconColor": "text-blue-500",
+        "category": "integration"
+      },
+      {
+        "q": "How fast is setup?",
+        "a": "Integration typically takes just 2-5 business days. Our team handles the technical implementation, including API connections, size chart configuration, and initial calibration. For standard e-commerce platforms, we have one-click installers.",
+        "icon": "FaRocket",
+        "iconColor": "text-purple-500",
+        "category": "integration"
+      },
+      {
+        "q": "Can I use my own size charts?",
+        "a": "Absolutely! You can upload or build custom size charts in your dashboard. Our system works with your existing sizing standards and can adapt to brand-specific measurements with a calibration period to ensure smooth transition.",
+        "icon": "FaCog",
+        "iconColor": "text-green-500",
+        "category": "customization"
+      },
+      {
+        "q": "Is my data secure?",
+        "a": "We prioritize data security with industry-standard encryption and strict compliance with privacy regulations. Customer measurement data is anonymized and never sold to third parties. We use secure cloud infrastructure with regular security audits.",
+        "icon": "FaUserShield",
+        "iconColor": "text-red-500",
+        "category": "security"
+      },
+      {
+        "q": "Do you offer custom features?",
+        "a": "Yes! From white-label branding to custom workflows, we build to fit your specific business needs, including retailer-specific dashboards, specialized size charts, custom analytics, and tailor-made shopper experiences.",
+        "icon": "FaShoppingCart",
+        "iconColor": "text-yellow-500",
+        "category": "customization"
+      }
+    ],
+    "stillHaveQuestions": {
+      "heading": "Still have questions?",
+      "description": "Our team is just a message away. Whether you need support, have questions, or want to discuss custom features, we're here to help.",
+      "contactSupport": "Contact Support",
+      "scheduleDemo": "Schedule Demo"
+    },
+    "quickLinks": {
+      "developerResources": {
+        "title": "Developer Resources",
+        "link": "View API Docs"
+      },
+      "caseStudies": {
+        "title": "Case Studies",
+        "link": "Success Stories"
+      },
+      "gettingStarted": {
+        "title": "Getting Started",
+        "link": "Integration Guide"
+      }
+    }
+  },
+  "socialProof": {
+    "badge": "Success Stories",
+    "heading": "Results That Speak For Themselves",
+    "subheading": "Join thousands of satisfied retailers and shoppers who have transformed their sizing experience",
+    "stats": [
+      {
+        "value": "87%",
+        "label": "Reduction in return rates"
+      },
+      {
+        "value": "98.5%",
+        "label": "Size recommendation accuracy"
+      },
+      {
+        "value": "23%",
+        "label": "Increase in conversions"
+      },
+      {
+        "value": "45+",
+        "label": "Countries reached"
+      }
+    ],
+    "testimonials": {
+      "heading": "What Our Partners Say",
+      "items": [
+        {
+          "quote": "Returns dropped by 40% since implementing MIQYAS. The integration was seamless and our customers love the accuracy.",
+          "name": "Sarah Johnson",
+          "title": "E-commerce Manager, FashionHub",
+          "rating": 5
+        },
+        {
+          "quote": "Our conversion rates have gone up by 23% in just three months. MIQYAS has been a game changer for our online store.",
+          "name": "Michael Chen",
+          "title": "CTO, StyleBoutique",
+          "rating": 5
+        },
+        {
+          "quote": "The data insights are incredible. We've reduced our carbon footprint by cutting down on returns and our customers are happier.",
+          "name": "Jessica Williams",
+          "title": "Sustainability Lead, EcoWear",
+          "rating": 4
+        }
+      ]
+    },
+    "partners": {
+      "heading": "Trusted By Leading Brands"
+    },
+    "press": {
+      "heading": "Press Mentions",
+      "featuredIn": "Featured in:",
+      "publications": ["TechCrunch", "Vogue", "WWD", "Forbes"]
+    },
+    "research": {
+      "heading": "Research",
+      "description": "92% accuracy in sizing prediction across all body types",
+      "button": "Download Whitepaper"
+    },
+    "awards": {
+      "heading": "Awards",
+      "description": "RetailTech Innovation Award 2023",
+      "button": "See All Awards"
+    },
+    "cta": {
+      "heading": "Ready to transform your sizing experience?",
+      "subheading": "Join the retailers who have increased sales and customer satisfaction with MIQYAS",
+      "primaryButton": "Request Demo",
+      "secondaryButton": "View Case Studies"
+    }
+  },
+  "productVisuals": {
+    "title": {
+      "badge": "Product Demo",
+      "heading": "See Product in Action",
+      "highlight": "Product"
+    },
+    "tabs": [
+      { "name": "Dashboard", "icon": "FaChartBar" },
+      { "name": "Integration", "icon": "FaCode" },
+      { "name": "Analytics", "icon": "FaBrain" }
+    ],
+    "dashboard": {
+      "title": "MIQYAS Dashboard",
+      "accuracyRate": "Accuracy Rate",
+      "accuracyValue": "98.7%",
+      "returnRate": "Return Rate",
+      "returnValue": "-72%",
+      "recentMeasurements": "Recent Measurements"
+    },
+    "integration": {
+      "installTitle": "// Install MIQYAS SDK",
+      "installCommand": "npm install miqyas-sizing-api",
+      "integrationTitle": "// Simple integration",
+      "importCode": "import { MiqyasAPI } from 'miqyas-sizing-api';",
+      "usageCode": "const sizeRecommendation = await MiqyasAPI.predict({",
+      "paramsCode": "  height: 175, weight: 70,",
+      "paramsCode2": "  gender: 'female', productId: 'tshirt-123'",
+      "closingCode": "});",
+      "resultCode": "// { size: \"M\", confidence: 0.95 }",
+      "platforms": "Platforms",
+      "platformList": ["Shopify", "WooCommerce", "Custom API"],
+      "responseTime": "Response Time",
+      "responseValue": "< 100ms",
+      "responseSpeed": "Blazing Fast"
+    },
+    "analytics": {
+      "title": "Sizing Analytics",
+      "timeRange": "Last 30 Days",
+      "export": "Export",
+      "sizeDistribution": "Size Distribution",
+      "productType": "Product: Women's T-shirts",
+      "total": "Total: 4,328",
+      "sizes": ["XS", "S", "M", "L", "XL"],
+      "returnReduction": "Return Reduction",
+      "returnValue": "72%",
+      "returnComparison": "Compared to 23% industry average",
+      "customerSatisfaction": "Customer Satisfaction",
+      "satisfactionValue": "96%",
+      "satisfactionSource": "Based on 10,000+ reviews"
+    },
+    "video": {
+      "title": "See It In Action",
+      "description": "Watch how MIQYAS transforms online shopping",
+      "duration": "1:24",
+      "quality": "HD"
+    },
+    "features": [
+      {
+        "title": "Simple Integration",
+        "description": "Install with a single line of code",
+        "icon": "FaCode"
+      },
+      {
+        "title": "Real-time Results",
+        "description": "98.7% accuracy in milliseconds",
+        "icon": "FaChartBar"
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay in the loop",
+      "description": "Subscribe to our newsletter for the latest updates, sizing tips, and exclusive early access.",
+      "placeholder": "Enter your email",
+      "button": "Subscribe",
+      "success": "Thank you for subscribing! Check your inbox soon."
+    },
+    "company": {
+      "about": "Next-generation AI sizing solutions for fashion retailers and online shoppers. Perfect fit, every time."
+    },
+    "links": {
+      "product": "Product",
+      "features": "Features",
+      "howItWorks": "How it Works",
+      "pricing": "Pricing",
+      "faq": "FAQ",
+      "sizingGuide": "Sizing Guide",
+      "resources": "Resources",
+      "documentation": "Documentation",
+      "apiReference": "API Reference",
+      "caseStudies": "Case Studies",
+      "blog": "Blog",
+      "partners": "Partners",
+      "company": "Company",
+      "aboutUs": "About Us",
+      "careers": "Careers",
+      "contact": "Contact",
+      "pressKit": "Press Kit",
+      "legal": "Legal",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service"
+    },
+    "copyright": "© 2025 MIQYAS. All rights reserved.",
+    "beta": "Beta",
+    "launchingSoon": "Launching soon — be the first to try next-gen AI sizing."
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "contactSection": {
+    "badge": "Get Started",
+    "heading": "Request a Demo",
+    "subheading": "Let us show you how MIQYAS can transform your sizing experience and boost your sales",
+    "formLabels": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "company": "Company",
+      "phone": "Phone Number",
+      "website": "Website URL",
+      "message": "Message",
+      "requestType": "I'm interested in:",
+      "marketType": "I represent:"
+    },
+    "formPlaceholders": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "company": "Your Company",
+      "phone": "+1 (123) 456-7890",
+      "website": "https://yourwebsite.com",
+      "message": "Tell us a bit about your needs..."
+    },
+    "requestTypes": ["Demo", "Pricing", "Partnership", "Other"],
+    "marketTypes": [
+      { "value": "retailer", "label": "A Retailer" },
+      { "value": "consumer", "label": "A Consumer" },
+      { "value": "both", "label": "Both" }
+    ],
+    "submitButton": "Request Demo",
+    "submittingText": "Submitting...",
+    "privacyText": "By submitting this form, you agree to our Privacy Policy and Terms of Service.",
+    "successMessage": {
+      "title": "Thank You!",
+      "message": "We've received your request and will contact you shortly to schedule your personalized demo."
+    },
+    "errorMessage": "Something went wrong. Please try again later.",
+    "contactInfo": {
+      "title": "Contact Information",
+      "email": {
+        "label": "Email Us",
+        "value": "demo@miqyas.com"
+      },
+      "phone": {
+        "label": "Call Us",
+        "value": "+1 (123) 456-7890"
+      },
+      "address": {
+        "label": "Visit Us",
+        "value": "MIQYAS HQ, 123 Tech Blvd, Suite 500, San Francisco, CA 94105"
+      }
+    },
+    "whatToExpect": {
+      "title": "What to Expect",
+      "items": [
+        "Personalized 30-minute demo tailored to your business needs",
+        "Live walkthrough of the MIQYAS dashboard and API",
+        "Discussion of implementation options and timeline",
+        "Q&A session with our product specialists",
+        "Custom pricing proposal based on your requirements"
+      ],
+      "readyToStart": {
+        "title": "Ready to get started?",
+        "message": "Our team typically responds within 24 hours to schedule your demo."
+      }
+    },
+    "benefits": {
+      "title": "Why Choose MIQYAS",
+      "items": [
+        "Reduce returns by up to 40% with AI-powered sizing recommendations",
+        "Increase customer satisfaction and loyalty with perfect fits",
+        "Easy integration with your existing e-commerce platform",
+        "Real-time analytics and insights on customer sizing patterns",
+        "Environmentally friendly solution that reduces waste from returns"
+      ]
+    },
+    "faqNote": {
+      "title": "Still Have Questions?",
+      "description": "Our FAQ section covers many common questions about MIQYAS and our sizing technology.",
+      "buttonText": "View FAQ Section",
+      "footerText": "Have more questions? Check our FAQ section or reach out to our support team."
+    }
+  }
+}

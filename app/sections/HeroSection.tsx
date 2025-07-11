@@ -7,8 +7,13 @@ import { getHeroSectionContent } from '../utils/contentLoader';
 import { DynamicIcon } from '../utils/iconUtils';
 import { FaTshirt } from 'react-icons/fa';
 import { MdCheckCircle } from 'react-icons/md';
+import { Dictionary } from '../i18n/types';
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  dictionary: Dictionary;
+}
+
+export default function HeroSection({ dictionary }: HeroSectionProps) {
   // Load content from JSON
   const content = getHeroSectionContent();
   
@@ -35,7 +40,7 @@ export default function HeroSection() {
         />
         <div className="inline-block px-2 py-1 sm:px-3 sm:py-1 bg-gradient-to-r from-indigo-600 to-blue-500 rounded-full text-[10px] xs:text-xs sm:text-sm font-medium text-white mb-1 sm:mb-2 shadow-md relative animate-pulse">
           <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-wider">
-            <DynamicIcon iconName={content.badge.icon} className="inline text-sm sm:text-base text-yellow-300" /> {content.badge.text}
+            <DynamicIcon iconName={content.badge.icon} className="inline text-sm sm:text-base text-yellow-300" /> {dictionary.hero.badge}
           </span>
           <div className="absolute -right-1 -top-1 w-3 h-3 sm:w-4 sm:h-4 bg-yellow-400 rounded-full animate-ping opacity-75"></div>
         </div>
@@ -43,26 +48,27 @@ export default function HeroSection() {
           itemProp="headline" 
           className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight drop-shadow-sm sm:drop-shadow-md"
         >
-          {content.headline.main}<br />
-          <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{content.headline.highlight}</span>
+          {dictionary.hero.headline.main}<br />
+          <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{dictionary.hero.headline.highlight}</span>
         </h1>
         <p 
           itemProp="description"
           className="text-xs xs:text-sm sm:text-base md:text-lg font-medium text-gray-700 dark:text-gray-200 max-w-xl"
         >
-          {content.subheading}
+          {dictionary.hero.subheading}
         </p>
         <div className="flex gap-2 sm:gap-3 mt-2 sm:mt-3 flex-wrap">
           {content.ctaButtons.map((button, index) => (
             <CTAButton key={index} primary={button.primary} href={button.href}>
               <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm">
-                <DynamicIcon iconName={button.icon} className="text-sm sm:text-base" /> {button.text}
+                <DynamicIcon iconName={button.icon} className="text-sm sm:text-base" /> 
+                {index === 0 ? dictionary.hero.ctaButtons.demo : dictionary.hero.ctaButtons.action}
               </span>
             </CTAButton>
           ))}
         </div>
         <div className="flex items-center gap-1.5 sm:gap-3 mt-4 sm:mt-6 bg-white/80 dark:bg-gray-900/80 px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg shadow-sm sm:shadow-md backdrop-blur-sm">
-          <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">{content.compatibilityText}</span>
+          <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">{dictionary.hero.compatibility}</span>
           {content.compatibilityIcons.map((icon, index) => (
             <DynamicIcon 
               key={index} 
