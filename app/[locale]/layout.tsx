@@ -25,10 +25,10 @@ const geistMono = Geist_Mono({
 export async function generateMetadata({ 
   params
 }: { 
-  params: { locale: Locale } 
+  params: Promise<{ locale: Locale }> 
 }): Promise<Metadata> {
-  // Properly await and destructure params
-  const locale = await Promise.resolve(params.locale);
+  // Await and get the locale from params
+  const { locale } = await params;
   
   // Validate that the incoming locale is valid
   const validLocale = i18n.locales.includes(locale) ? locale : i18n.defaultLocale;
@@ -55,15 +55,18 @@ export async function generateStaticParams() {
   return i18n.locales.map((locale) => ({ locale }));
 }
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params
 }: {
   children: React.ReactNode;
-  params: { locale: Locale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  let { locale } = params;
+  // Await the params to get the locale
+  const { locale: rawLocale } = await params;
+  
   // Validate that the incoming locale is valid
+  let locale = rawLocale;
   if (!i18n.locales.includes(locale)) {
     // This shouldn't happen with static generation, but just in case
     locale = i18n.defaultLocale;

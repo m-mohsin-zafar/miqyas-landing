@@ -17,9 +17,10 @@ import { getFAQSectionContent } from "../utils/contentLoader";
 export default async function Home({
   params
 }: {
-  params: { locale: Locale }
+  params: Promise<{ locale: Locale }>
 }) {
-  const { locale } = params;
+  // Await and get the locale from params
+  const { locale } = await params;
   // Get the dictionary for the current locale
   const dict = await getDictionary(locale);
   

@@ -19,7 +19,7 @@ export default function ProductSchema({ name, description, image }: ProductSchem
     },
     offers: {
       '@type': 'Offer',
-      availability: 'https://schema.org/ComingSoon',
+      availability: 'https://schema.org/PreOrder',
       price: '0',
       priceCurrency: 'USD'
     }

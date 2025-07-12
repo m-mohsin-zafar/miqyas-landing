@@ -48,23 +48,24 @@ export default function SEO({ type, productProps }: SEOProps) {
   // Build all the necessary JSON-LD components
   return (
     <>
-      {(type === 'organization' || type === 'all') && (
+      {(type === 'organization' || type === 'all') && organizationSchema && (
         <JsonLd data={organizationSchema} id="organization-jsonld" />
       )}
       
-      {(type === 'product' || type === 'all') && (
+      {(type === 'product' || type === 'all') && productSchema && (
         <JsonLd 
           data={{
             ...productSchema,
             ...(productProps?.name && { name: productProps.name }),
             ...(productProps?.description && { description: productProps.description }),
             ...(productProps?.image && { image: productProps.image }),
-            ...(productProps?.price && {
+            ...(productProps?.price && productProps?.currency && { 
               offers: {
                 "@type": "Offer",
                 price: productProps.price,
-                priceCurrency: productProps.currency || "USD"
-              }
+                priceCurrency: productProps.currency,
+                availability: 'https://schema.org/InStock'
+              } 
             })
           }} 
           id="product-jsonld" 

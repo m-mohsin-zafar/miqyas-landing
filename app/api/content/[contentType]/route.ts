@@ -8,9 +8,10 @@ import path from 'path';
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { contentType: string } }
+  context: { params: Promise<{ contentType: string }> }
 ) {
-  const { contentType } = params;
+  // Await the params to get the contentType
+  const { contentType } = await context.params;
   
   // Validate content type to prevent directory traversal
   const validContentTypes = ['heroSection', 'faqSection', 'featureGrid', 'howItWorks'];
