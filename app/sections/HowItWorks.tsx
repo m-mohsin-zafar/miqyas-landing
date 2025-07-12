@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { getHowItWorksContent } from '../utils/contentLoader';
 import { DynamicIcon } from '../utils/iconUtils';
 import { Dictionary } from '../i18n/types';
@@ -13,51 +14,141 @@ interface HowItWorksProps {
 export default function HowItWorks({ dictionary }: HowItWorksProps) {
   // Load content from JSON for icons only
   const content = getHowItWorksContent();
+  const [activeStep, setActiveStep] = useState(0);
   
   return (
-    <section className="py-24 px-4 md:px-16 bg-gradient-to-b from-white to-indigo-50 dark:from-gray-900 dark:to-indigo-950 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-indigo-50/70 dark:from-gray-900 dark:to-indigo-950/40 relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute top-40 left-0 w-80 h-80 bg-indigo-100 dark:bg-indigo-900/20 rounded-full opacity-30 blur-3xl"></div>
-      <div className="absolute bottom-0 right-10 w-60 h-60 bg-blue-100 dark:bg-blue-900/20 rounded-full opacity-30 blur-3xl"></div>
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-indigo-100 dark:bg-indigo-900/20 rounded-full opacity-30 blur-3xl"></div>
+        <div className="absolute top-1/4 right-0 w-60 h-60 bg-blue-100 dark:bg-blue-900/20 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/3 w-40 h-40 bg-purple-100 dark:bg-purple-900/20 rounded-full opacity-20 blur-3xl"></div>
+      </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col items-center mb-16">
-          <span className="px-4 py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-sm font-medium mb-4 shadow-sm">{dictionary.howItWorks.title.badge}</span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-center text-gray-900 dark:text-white drop-shadow-sm">
-            {dictionary.howItWorks.title.heading.replace(dictionary.howItWorks.title.highlight, '')} <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">{dictionary.howItWorks.title.highlight}</span>
+        {/* Section header */}
+        <div className="text-center mb-10 md:mb-12">
+          <div className="inline-block">
+            <span className="inline-block px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-200 rounded-full text-sm font-medium mb-3">
+              {dictionary.howItWorks.title.badge}
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+            {dictionary.howItWorks.title.heading.split(dictionary.howItWorks.title.highlight).map((part, i, arr) => (
+              <React.Fragment key={i}>
+                {part}
+                {i < arr.length - 1 && (
+                  <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
+                    {dictionary.howItWorks.title.highlight}
+                  </span>
+                )}
+              </React.Fragment>
+            ))}
           </h2>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-indigo-600 to-blue-400 mt-6 rounded-full shadow-sm"></div>
         </div>
         
-        <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-4 mt-20 relative">
-          
-          {dictionary.howItWorks.steps.map((step: { number: string; title: string; description: string }, index: number) => (
-            <React.Fragment key={index}>
-              {/* Step */}
-              <div className="w-full md:w-1/4 flex flex-col items-center text-center relative">
-                <div className="absolute -top-12 text-6xl font-black bg-gradient-to-r from-indigo-200 to-blue-100 dark:from-indigo-800 dark:to-indigo-600 bg-clip-text text-transparent select-none z-0">{step.number}</div>
-                <div className="w-16 h-16 bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-500 dark:to-blue-400 rounded-full p-4 mb-6 shadow-lg flex items-center justify-center z-10 ring-8 ring-white dark:ring-gray-900 transform transition-all duration-300 hover:scale-110 hover:shadow-xl">
-                  <DynamicIcon iconName={content.steps[index].icon} className="text-white text-2xl" />
-                </div>
-                <h3 className="font-bold text-xl mb-3 bg-gradient-to-r from-indigo-800 to-blue-700 dark:from-indigo-400 dark:to-blue-300 bg-clip-text text-transparent relative z-10">{step.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed relative z-10">{step.description}</p>
+        {/* Mobile view with ProductVisuals-like design */}
+        <div className="md:hidden">
+          {/* Mobile step selector with arrows */}
+          <div className="flex items-center justify-center w-full mb-6">
+            <button 
+              onClick={() => setActiveStep(prev => (prev === 0 ? dictionary.howItWorks.steps.length - 1 : prev - 1))}
+              className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-sm text-indigo-600 dark:text-indigo-400 text-xs"
+              aria-label="Previous step"
+            >
+              <FaArrowLeft />
+            </button>
+            <div className="flex-1 max-w-[200px] mx-4">
+              <div className="flex items-center justify-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-gradient-to-r from-indigo-600 to-blue-500 text-white shadow-sm">
+                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-white/20 text-white text-xs">
+                  {dictionary.howItWorks.steps[activeStep].number}
+                </span>
+                {dictionary.howItWorks.steps[activeStep].title}
               </div>
-              
-              {/* Arrow for mobile - only between steps, not after the last */}
-              {index < dictionary.howItWorks.steps.length - 1 && (
-                <div className="md:hidden w-full flex justify-center my-4">
-                  <div className="h-16 w-1 bg-gradient-to-b from-indigo-400 to-blue-500 dark:from-indigo-600 dark:to-blue-400 rounded-full"></div>
-                </div>
-              )}
-            </React.Fragment>
-          ))}
+            </div>
+            <button 
+              onClick={() => setActiveStep(prev => (prev === dictionary.howItWorks.steps.length - 1 ? 0 : prev + 1))}
+              className="p-2 bg-white dark:bg-gray-800 rounded-full shadow-sm text-indigo-600 dark:text-indigo-400 text-xs"
+              aria-label="Next step"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
+          
+          {/* Active step card for mobile */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-5 border border-gray-100 dark:border-gray-700 mb-6">
+            <div className="flex items-center mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-500 dark:to-blue-400 rounded-full flex items-center justify-center shadow-md mr-4">
+                <DynamicIcon iconName={content.steps[activeStep].icon} className="text-white text-xl" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+                {dictionary.howItWorks.steps[activeStep].title}
+              </h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300">
+              {dictionary.howItWorks.steps[activeStep].description}
+            </p>
+          </div>
+          
+          {/* Step indicators */}
+          <div className="flex justify-center gap-2 mb-6">
+            {dictionary.howItWorks.steps.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveStep(index)}
+                className={`w-2 h-2 rounded-full transition-all ${activeStep === index ? 'bg-indigo-600 w-4' : 'bg-gray-300 dark:bg-gray-600'}`}
+                aria-label={`Go to step ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
         
-        {/* Additional text or summary */}
-        <div className="mt-20 text-center max-w-2xl mx-auto relative z-10">
-          <p className="text-gray-700 dark:text-gray-200 text-lg">
+        {/* Desktop view with centered grid layout */}
+        <div className="hidden md:block">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+            {dictionary.howItWorks.steps.map((step, index) => (
+              <div 
+                key={index} 
+                className="w-full max-w-[260px]"
+              >
+                <div className="group bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md p-4 border border-gray-100 dark:border-gray-700 transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+                  {/* Compact header with number and icon */}
+                  <div className="flex items-center mb-3">
+                    <div className="w-8 h-8 flex-shrink-0 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold mr-2 shadow-sm">
+                      {step.number}
+                    </div>
+                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-500 dark:to-blue-400 rounded-full flex items-center justify-center shadow-sm ml-auto">
+                      <DynamicIcon iconName={content.steps[index].icon} className="text-white text-lg" />
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors duration-300">{step.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm flex-grow">{step.description}</p>
+                  
+                  {/* Subtle indicator */}
+                  <div className="mt-3 flex justify-end">
+                    <div className="text-indigo-500 dark:text-indigo-400 opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1">
+                      <BsArrowRight />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Summary and CTA */}
+        <div className="mt-10 md:mt-14 text-center max-w-2xl mx-auto">
+          <p className="text-gray-700 dark:text-gray-200 text-base md:text-lg mb-6">
             {dictionary.howItWorks.summary}
           </p>
+          <a 
+            href="#contact" 
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            {dictionary.howItWorks.cta || 'Learn More'}
+            <BsArrowRight />
+          </a>
         </div>
       </div>
     </section>

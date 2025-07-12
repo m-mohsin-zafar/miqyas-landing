@@ -7,7 +7,6 @@ import Script from 'next/script';
 import { i18n, Locale, getDirection } from '../i18n/config';
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import ThemeSwitcher from "../components/ThemeSwitcher";
-import { ThemeProvider } from "../components/ThemeProvider";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -29,11 +28,25 @@ export async function generateMetadata({
   params: { locale: Locale } 
 }): Promise<Metadata> {
   // Properly await and destructure params
-  const { locale } = params;
+  const locale = await Promise.resolve(params.locale);
+  
+  // Validate that the incoming locale is valid
+  const validLocale = i18n.locales.includes(locale) ? locale : i18n.defaultLocale;
   
   return {
     ...defaultMetadata,
-    // You can add locale-specific metadata here if needed
+    // Add locale-specific metadata
+    title: {
+      template: `%s | MIQYAS - ${validLocale === 'ar' ? 'مقياس' : 'MIQYAS'}`,
+      default: `MIQYAS - ${validLocale === 'ar' ? 'مقياس - حل المقاسات المدعوم بالذكاء الاصطناعي' : 'AI-Powered Sizing Solution'}`
+    },
+    alternates: {
+      canonical: `/${validLocale}`,
+      languages: {
+        'en': '/en',
+        'ar': '/ar'
+      }
+    }
   };
 }
 
@@ -88,23 +101,21 @@ export default function LocaleLayout({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       
-      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-        <div className={`${geistSans.variable} ${geistMono.variable} antialiased text-[13px] xs:text-[14px] sm:text-[15px] md:text-[16px] flex flex-col min-h-screen`}>
-          <header className="p-4 flex justify-between items-center bg-white dark:bg-gray-900 shadow-sm">
-            <Link href={`/${locale}`} className="flex items-center">
-              <div className="bg-indigo-600 text-white font-bold text-xl rounded-lg w-8 h-8 flex items-center justify-center mr-2">M</div>
-              <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white">MIQYAS</span>
-            </Link>
-            <div className="flex items-center gap-3">
-              <ThemeSwitcher locale={locale} />
-              <LanguageSwitcher />
-            </div>
-          </header>
-          <main className={`flex-grow ${dir === 'rtl' ? 'rtl-content' : ''}`}>
-            {children}
-          </main>
-        </div>
-      </ThemeProvider>
+      <div className={`flex flex-col min-h-screen`}>
+        <header className="p-4 flex justify-between items-center bg-white dark:bg-gray-900 shadow-sm">
+          <Link href={`/${locale}`} className="flex items-center">
+            <div className="bg-indigo-600 text-white font-bold text-xl rounded-lg w-8 h-8 flex items-center justify-center mr-2">M</div>
+            <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white">MIQYAS</span>
+          </Link>
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher locale={locale} />
+            <LanguageSwitcher />
+          </div>
+        </header>
+        <main className={`flex-grow ${dir === 'rtl' ? 'rtl-content' : ''}`}>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import "./globals.css";
 import { defaultMetadata, generateViewport } from './utils/metadata';
 import { createOrganizationSchema } from './utils/schema';
 import Script from 'next/script';
+import { ThemeProvider } from "./components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +37,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en">
+    <html suppressHydrationWarning>
       <head>
         <link rel="canonical" href="https://miqyas-landing.vercel.app" />
         <link rel="alternate" hrefLang="en" href="https://miqyas-landing.vercel.app" />
@@ -51,7 +52,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-[13px] xs:text-[14px] sm:text-[15px] md:text-[16px]`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

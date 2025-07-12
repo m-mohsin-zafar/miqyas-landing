@@ -79,6 +79,7 @@ export interface Dictionary {
       description: string;
     }>;
     summary: string;
+    cta?: string;
   };
   audienceSplit: {
     title: {

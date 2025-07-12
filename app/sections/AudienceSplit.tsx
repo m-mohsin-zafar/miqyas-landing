@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { 
   FaBoxOpen, FaChartLine, FaShoppingBag, FaTshirt,
   FaSmile, FaSearch, FaExchangeAlt
@@ -45,14 +45,14 @@ export default function AudienceSplit({ dictionary }: AudienceSplitProps) {
           <span className="px-3 py-1 sm:px-4 sm:py-1.5 bg-gradient-to-r from-indigo-100 to-blue-50 dark:from-indigo-900/50 dark:to-blue-900/30 text-indigo-800 dark:text-indigo-200 rounded-full text-xs sm:text-sm font-medium mb-3 sm:mb-4 shadow-sm">{audienceSplit.title.badge}</span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold sm:font-extrabold text-center text-gray-900 dark:text-white drop-shadow-sm">
             {audienceSplit.title.heading.split(audienceSplit.title.highlight).map((part, i, arr) => (
-              <>
+              <React.Fragment key={`heading-part-${i}`}>
                 {part}
                 {i < arr.length - 1 && (
                   <span className="bg-gradient-to-r from-indigo-600 to-blue-500 bg-clip-text text-transparent">
                     {audienceSplit.title.highlight}
                   </span>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </h2>
           <div className="w-16 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-indigo-600 to-blue-400 mt-4 sm:mt-6 rounded-full shadow-sm"></div>

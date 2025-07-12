@@ -119,26 +119,27 @@
     "steps": [
       {
         "number": "1",
-        "title": "Start Shopping",
-        "description": "Customer visits your online store and browses your products"
+        "title": "Shop",
+        "description": "Browse products in your online store"
       },
       {
         "number": "2",
-        "title": "AI Measurement",
-        "description": "Our AI quickly estimates measurements from simple photos and data inputs"
+        "title": "Measure",
+        "description": "AI calculates precise body measurements"
       },
       {
         "number": "3",
-        "title": "Size Match",
-        "description": "The system matches body measurements to the perfect size for each garment"
+        "title": "Match",
+        "description": "System finds the perfect size for each item"
       },
       {
         "number": "4",
-        "title": "Perfect Fit",
-        "description": "Customer receives clothing that fits perfectly right out of the package"
+        "title": "Fit",
+        "description": "Receive perfectly fitting clothes every time"
       }
     ],
-    "summary": "Our simple 4-step process ensures accurate sizing, reduces returns, and creates happy customers with minimal effort."
+    "summary": "Our simple 4-step process ensures accurate sizing, reduces returns, and creates happy customers with minimal effort.",
+    "cta": "Get Started Today"
   },
   "audienceSplit": {
     "title": {

@@ -33,46 +33,46 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
   }));
 
   return (
-    <section id="faq" className="py-12 md:py-20 bg-gradient-to-b from-white to-indigo-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
-      <div className="container mx-auto max-w-7xl relative z-10">
+    <section id="faq" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-indigo-50 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Add FAQ Schema for SEO */}
         <FAQSchema faqs={schemaFaqs} />
         
         {/* Section header */}
-        <div className="flex flex-col items-center text-center mb-10 md:mb-16">
-          <span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 text-xs md:text-sm font-medium px-3 py-1 rounded-full mb-3">
+        <div className="flex flex-col items-center text-center mb-8 md:mb-12">
+          <span className="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 text-xs font-medium px-3 py-1 rounded-full mb-3">
             {faqSection.badge}
           </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold tracking-tight mb-3">
             {faqSection.heading}
           </h2>
-          <p className="text-gray-500 dark:text-gray-400 text-lg md:text-xl max-w-3xl">
+          <p className="text-gray-500 dark:text-gray-400 text-sm md:text-base max-w-2xl">
             {faqSection.subheading}
           </p>
         </div>
         
         {/* Search and categories */}
-        <div className="mb-8 sm:mb-10">
-          <div className="max-w-lg mx-auto relative mb-4 sm:mb-6">
-            <div className="absolute rtl:right-3 rtl:sm:right-4 ltr:left-3 ltr:sm:left-4 top-1/2 transform -translate-y-1/2 text-gray-400">
-              <FaSearch className="text-xs sm:text-sm" />
+        <div className="mb-6">
+          <div className="max-w-md mx-auto relative mb-3">
+            <div className="absolute rtl:right-3 ltr:left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <FaSearch className="text-xs" />
             </div>
             <input 
               type="text" 
               placeholder={faqSection.searchPlaceholder}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full py-2 sm:py-3 rtl:pr-8 rtl:sm:pr-12 rtl:pl-4 ltr:pl-8 ltr:sm:pl-12 ltr:pr-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-xs sm:text-sm text-gray-700 dark:text-gray-200"
+              className="w-full py-2 rtl:pr-8 rtl:pl-3 ltr:pl-8 ltr:pr-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-xs text-gray-700 dark:text-gray-200"
               dir="auto"
             />
           </div>
           
-          <div className="flex flex-wrap justify-center gap-1 sm:gap-2">
+          <div className="flex flex-wrap justify-center gap-1">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                 selectedCategory === 'all' 
-                ? 'bg-indigo-600 text-white shadow' 
+                ? 'bg-indigo-600 text-white shadow-sm' 
                 : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
               }`}
             >
@@ -82,9 +82,9 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 ${
+                className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                   selectedCategory === category.id 
-                  ? 'bg-indigo-600 text-white shadow' 
+                  ? 'bg-indigo-600 text-white shadow-sm' 
                   : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
                 }`}
               >
@@ -95,7 +95,7 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
         </div>
         
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 mb-8 sm:mb-12">
+        <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-3 sm:p-4 mb-6 sm:mb-8">
           {filteredFaqs.length > 0 ? (
             <Accordion>
               {filteredFaqs.map((faq, i) => (
@@ -104,14 +104,14 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
                   value={faq.q}
                   title={
                     <div className="flex items-center">
-                      <span className="ltr:mr-2 ltr:sm:mr-3 rtl:ml-2 rtl:sm:ml-3 text-xs sm:text-sm">
+                      <span className="ltr:mr-2 rtl:ml-2 text-xs">
                         <DynamicIcon iconName={faq.icon} className={faq.iconColor} />
                       </span>
-                      <span className="text-sm sm:text-base">{faq.q}</span>
+                      <span className="text-xs sm:text-sm">{faq.q}</span>
                     </div>
                   }
                   content={
-                    <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+                    <div className="text-xs text-gray-600 dark:text-gray-300 pl-5">
                       {faq.a}
                     </div>
                   }
@@ -119,11 +119,11 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
               ))}
             </Accordion>
           ) : (
-            <div className="text-center py-8 sm:py-12">
-              <p className="text-sm text-gray-600 dark:text-gray-300">{faqSection.noResultsText}</p>
+            <div className="text-center py-4">
+              <p className="text-xs text-gray-600 dark:text-gray-300">{faqSection.noResultsText}</p>
               <button 
                 onClick={() => setSearchTerm('')}
-                className="mt-3 text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-medium"
+                className="mt-2 text-xs text-indigo-600 dark:text-indigo-400 font-medium"
               >
                 {faqSection.clearSearch}
               </button>
@@ -132,64 +132,71 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
         </div>
         
         {/* Still have questions */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 rounded-xl sm:rounded-2xl p-5 sm:p-8 md:p-10 text-white text-center">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">{faqSection.stillHaveQuestions.heading}</h3>
-          <p className="mb-5 sm:mb-6 text-xs sm:text-sm text-indigo-100 max-w-2xl mx-auto">
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700 rounded-lg shadow-md p-4 sm:p-6 text-white text-center max-w-2xl mx-auto mb-6 sm:mb-8">
+          <h3 className="text-lg sm:text-xl font-bold mb-2">{faqSection.stillHaveQuestions.heading}</h3>
+          <p className="mb-4 text-xs text-indigo-100 max-w-xl mx-auto">
             {faqSection.stillHaveQuestions.description}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-            <CTAButton primary href="mailto:support@miqyas.com">
+          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+            <CTAButton 
+              primary 
+              href="mailto:support@miqyas.com" 
+              className="text-xs py-1.5 px-3 bg-white text-indigo-600 hover:bg-gray-100"
+            >
               {faqSection.stillHaveQuestions.contactSupport}
             </CTAButton>
-            <CTAButton href="#contact">
+            <CTAButton 
+              href="#contact" 
+              className="text-xs py-1.5 px-3 bg-indigo-900/30 text-white hover:bg-indigo-900/50 border border-white/20"
+            >
               {faqSection.stillHaveQuestions.scheduleDemo}
             </CTAButton>
           </div>
         </div>
         
         {/* Quick links */}
-        <div className="mt-8 sm:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto place-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
           {/* Developer Resources */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-xl shadow-md flex items-center gap-3 sm:gap-4">
-            <div className="p-2 sm:p-3 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg text-indigo-600 dark:text-indigo-400">
-              <FaLaptopCode className="text-xs sm:text-sm" />
+          <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center gap-2">
+            <div className="p-1.5 bg-indigo-100 dark:bg-indigo-900/30 rounded-md text-indigo-600 dark:text-indigo-400">
+              <FaLaptopCode className="text-xs" />
             </div>
             <div>
-              <h4 className="font-bold text-sm sm:text-base mb-1 sm:mb-2 text-gray-900 dark:text-white">
+              <h4 className="font-bold text-xs mb-0.5 text-gray-900 dark:text-white">
                 {faqSection.quickLinks.developerResources.title}
               </h4>
-              <a href="#" className="inline-flex items-center text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-                {faqSection.quickLinks.developerResources.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-xs rtl:rotate-180" />
+              <a href="#" className="inline-flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
+                {faqSection.quickLinks.developerResources.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-[10px] rtl:rotate-180" />
               </a>
             </div>
           </div>
           
           {/* Case Studies */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-xl shadow-md flex items-center gap-3 sm:gap-4">
-            <div className="p-2 sm:p-3 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600 dark:text-green-400">
-              <FaChartLine className="text-xs sm:text-sm" />
+          <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center gap-2">
+            <div className="p-1.5 bg-green-100 dark:bg-green-900/30 rounded-md text-green-600 dark:text-green-400">
+              <FaChartLine className="text-xs" />
             </div>
             <div>
-              <h4 className="font-bold text-sm sm:text-base mb-1 sm:mb-2 text-gray-900 dark:text-white">
+              <h4 className="font-bold text-xs mb-0.5 text-gray-900 dark:text-white">
                 {faqSection.quickLinks.caseStudies.title}
               </h4>
-              <a href="#" className="inline-flex items-center text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-                {faqSection.quickLinks.caseStudies.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-xs rtl:rotate-180" />
+              <a href="#" className="inline-flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
+                {faqSection.quickLinks.caseStudies.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-[10px] rtl:rotate-180" />
               </a>
             </div>
           </div>
           
           {/* Getting Started */}
-          <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 rounded-xl shadow-md flex items-center gap-3 sm:gap-4">
-            <div className="p-2 sm:p-3 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600 dark:text-blue-400">
-              <FaRocket className="text-xs sm:text-sm" />
+          <div className="bg-white dark:bg-gray-800 p-3 rounded-lg shadow-sm flex items-center gap-2">
+            <div className="p-1.5 bg-blue-100 dark:bg-blue-900/30 rounded-md text-blue-600 dark:text-blue-400">
+              <FaRocket className="text-xs" />
             </div>
             <div>
-              <h4 className="font-bold text-sm sm:text-base mb-1 sm:mb-2 text-gray-900 dark:text-white">
+              <h4 className="font-bold text-xs mb-0.5 text-gray-900 dark:text-white">
                 {faqSection.quickLinks.gettingStarted.title}
               </h4>
-              <a href="#" className="inline-flex items-center text-xs sm:text-sm text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-                {faqSection.quickLinks.gettingStarted.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-xs rtl:rotate-180" />
+              <a href="#" className="inline-flex items-center text-xs text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
+                {faqSection.quickLinks.gettingStarted.link} <FaAngleRight className="ltr:ml-1 rtl:mr-1 text-[10px] rtl:rotate-180" />
               </a>
             </div>
           </div>
