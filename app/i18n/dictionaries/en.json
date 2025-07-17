@@ -4,7 +4,7 @@
     "title": "MIQYAS Launching Soon",
     "description": "Be among the first to experience our AI sizing technology",
     "launchInfo": {
-      "timing": "Launching Summer 2025",
+      "timing": "Launching Winter 2025",
       "waitlistText": "Join our waitlist for early access & special benefits."
     },
     "benefits": {
@@ -48,7 +48,7 @@
     "description": "Our AI-powered sizing solution offers a comprehensive suite of features designed to reduce returns, increase conversions, and enhance the customer experience.",
     "feature1": {
       "title": "AI-Powered Accuracy",
-      "description": "Our advanced algorithms provide up to 98% accurate size recommendations"
+      "description": "Our advanced algorithms provide up to 90% accurate measurements & size recommendations"
     },
     "feature2": {
       "title": "Easy Integration",
@@ -56,14 +56,14 @@
     },
     "feature3": {
       "title": "Reduce Returns",
-      "description": "Cut returns by up to 40% with precise sizing recommendations"
+      "description": "Cut returns by up to 40% with precise measurements & size recommendations"
     },
     "exploreAllFeatures": "Explore All Features",
     "allFeatures": [
       { 
         "icon": "FaRobot", 
         "title": "AI Body Measurements", 
-        "desc": "Get accurate size recommendations with just a few data points—no hardware required.",
+        "desc": "Get accurate measurements & size recommendations with just a few data points—no hardware required.",
         "color": "from-blue-500 to-indigo-600"
       },
       { 
@@ -156,7 +156,7 @@
     "shopperHeading": "Find Your Perfect Fit Every Time",
     "retailerBenefits": [
       {
-        "title": "Reduce Returns by 72%",
+        "title": "Reduce Returns by upto 40%",
         "description": "Lower return rates by helping customers choose the right size first time."
       },
       {
@@ -202,7 +202,7 @@
     "faqs": [
       {
         "q": "How accurate is the sizing?",
-        "a": "Our AI system achieves over 98% accuracy in size recommendations through our unique algorithm trained on 100,000+ body scans. We continuously improve our models using real-world feedback to maintain high accuracy across all body types and clothing categories.",
+        "a": "Our AI system achieves over 90% accuracy in size recommendations through our unique algorithm trained on 100,000+ body scans. We continuously improve our models using real-world feedback to maintain high accuracy across all body types and clothing categories.",
         "icon": "FaChartLine",
         "iconColor": "text-indigo-500",
         "category": "accuracy"
@@ -484,7 +484,7 @@
       "title": "Contact Information",
       "email": {
         "label": "Email Us",
-        "value": "demo@miqyas.com"
+        "value": "mohsin@miqyas.net"
       },
       "phone": {
         "label": "Call Us",

@@ -22,12 +22,12 @@ export default function HeroSection({ dictionary }: HeroSectionProps) {
       aria-label="Hero Section"
       itemScope 
       itemType="https://schema.org/WebPageElement"
-      className="relative flex flex-col-reverse md:flex-row items-center justify-between py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 min-h-[70vh] sm:min-h-[75vh] overflow-hidden">
+      className="relative flex flex-col-reverse md:flex-row items-center justify-between py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-gradient-to-br from-indigo-50 via-blue-100 to-indigo-200 dark:from-gray-900 dark:via-indigo-950 dark:to-purple-900 min-h-[70vh] sm:min-h-[75vh] overflow-hidden">
       {/* Enhanced animated background shapes */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute -top-20 -left-20 w-60 sm:w-72 h-60 sm:h-72 bg-indigo-200 rounded-full opacity-30 blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-blue-300 rounded-full opacity-20 blur-2xl animate-pulse" />
-        <div className="absolute top-1/4 right-1/4 w-28 sm:w-36 h-28 sm:h-36 bg-purple-200 rounded-full opacity-20 blur-xl animate-pulse" />
+        <div className="absolute -top-20 -left-20 w-60 sm:w-72 h-60 sm:h-72 bg-indigo-200 dark:bg-indigo-800 rounded-full opacity-30 blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-blue-300 dark:bg-blue-800 rounded-full opacity-20 blur-2xl animate-pulse" />
+        <div className="absolute top-1/4 right-1/4 w-28 sm:w-36 h-28 sm:h-36 bg-purple-200 dark:bg-purple-800 rounded-full opacity-20 blur-xl animate-pulse" />
       </div>
       <div className="flex-1 flex flex-col items-start gap-3 sm:gap-4 md:gap-6 z-10 mt-4 md:mt-0">
         <Image 

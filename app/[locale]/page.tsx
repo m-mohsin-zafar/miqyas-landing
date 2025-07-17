@@ -9,7 +9,7 @@ import SocialProof from "../sections/SocialProof";
 import FAQSection from "../sections/FAQSection";
 import ContactSection from "../sections/ContactSection";
 import Footer from "../sections/Footer";
-import LaunchModal from "../components/LaunchModal";
+import ClientLaunchModal from "../components/ClientLaunchModal";
 import Script from "next/script";
 import { createSaaSProductSchema, createFAQSchema } from "../utils/schema";
 import { getFAQSectionContent } from "../utils/contentLoader";
@@ -57,13 +57,13 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       
-      <LaunchModal dictionary={dict} />
+      <ClientLaunchModal dictionary={dict} />
       <HeroSection dictionary={dict} />
       <HowItWorks dictionary={dict} />
       <ProductVisuals dictionary={dict} />
       <FeatureGrid dictionary={dict} />
       <AudienceSplit dictionary={dict} />
-      <SocialProof dictionary={dict} />
+      {/* <SocialProof dictionary={dict} /> */}
       <FAQSection dictionary={dict} />
       <ContactSection dictionary={dict} />
       <Footer dictionary={dict} />

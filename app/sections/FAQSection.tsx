@@ -14,11 +14,15 @@ interface FAQSectionProps {
 
 export default function FAQSection({ dictionary }: FAQSectionProps) {
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   
   // Get FAQ content from dictionary
   const faqSection = dictionary.faqSection;
   const { faqs, categories } = faqSection;
+  
+  // Find the "all" category from the dictionary
+  const allCategory = categories.find(cat => cat.id === 'all');
+  // Set initial state to the ID of the "all" category
+  const [selectedCategory, setSelectedCategory] = useState(allCategory?.id || 'all');
   
   const filteredFaqs = faqs.filter(faq => 
     (faq.q.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -68,16 +72,6 @@ export default function FAQSection({ dictionary }: FAQSectionProps) {
           </div>
           
           <div className="flex flex-wrap justify-center gap-1">
-            <button
-              onClick={() => setSelectedCategory('all')}
-              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                selectedCategory === 'all' 
-                ? 'bg-indigo-600 text-white shadow-sm' 
-                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              All
-            </button>
             {categories.map(category => (
               <button
                 key={category.id}

@@ -3,6 +3,13 @@ import type { Dictionary } from './types';
 
 // Function to get dictionary based on locale
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
+  // Validate that the locale is one of our supported locales
+  // This prevents attempts to load dictionaries for static assets like icon.svg
+  if (!i18n.locales.includes(locale as any)) {
+    console.warn(`Invalid locale requested: ${locale}, falling back to default`);
+    locale = i18n.defaultLocale as Locale;
+  }
+
   try {
     return (await import(`./dictionaries/${locale}.json`)).default;
   } catch (error) {

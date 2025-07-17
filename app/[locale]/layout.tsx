@@ -41,9 +41,9 @@ export async function generateMetadata({
       default: `MIQYAS - ${validLocale === 'ar' ? 'مقياس - حل المقاسات المدعوم بالذكاء الاصطناعي' : 'AI-Powered Sizing Solution'}`
     },
     alternates: {
-      canonical: `/${validLocale}`,
+      canonical: validLocale === i18n.defaultLocale ? '/' : `/${validLocale}`,
       languages: {
-        'en': '/en',
+        'en': '/',
         'ar': '/ar'
       }
     }
@@ -89,9 +89,9 @@ export default async function LocaleLayout({
         {JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          'url': `https://miqyas-landing.vercel.app/${locale}`,
+          'url': `https://miqyas-landing.vercel.app${locale === i18n.defaultLocale ? '' : `/${locale}`}`,
           'alternateName': [
-            { '@language': 'en', 'url': 'https://miqyas-landing.vercel.app/en' },
+            { '@language': 'en', 'url': 'https://miqyas-landing.vercel.app' },
             { '@language': 'ar', 'url': 'https://miqyas-landing.vercel.app/ar' }
           ]
         })}
@@ -106,7 +106,7 @@ export default async function LocaleLayout({
       
       <div className={`flex flex-col min-h-screen`}>
         <header className="p-4 flex justify-between items-center bg-white dark:bg-gray-900 shadow-sm">
-          <Link href={`/${locale}`} className="flex items-center">
+          <Link href={locale === i18n.defaultLocale ? '/' : `/${locale}`} className="flex items-center">
             <div className="bg-indigo-600 text-white font-bold text-xl rounded-lg w-8 h-8 flex items-center justify-center mr-2">M</div>
             <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white">MIQYAS</span>
           </Link>

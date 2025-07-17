@@ -18,6 +18,8 @@ export default function LanguageSwitcher() {
     if (i18n.locales.includes(localeInPath as Locale)) {
       setCurrentLocale(localeInPath as Locale);
     } else {
+      // If we're at the root path or any path without a locale prefix,
+      // we're using the default locale
       setCurrentLocale(i18n.defaultLocale);
     }
   }, [pathname]);
@@ -35,7 +37,13 @@ export default function LanguageSwitcher() {
       newPath = pathSegments.join('/') || '/';
     }
 
-    // Add new locale to path
+    // For default locale (en), don't add locale to path
+    if (newLocale === i18n.defaultLocale) {
+      router.push(newPath);
+      return;
+    }
+    
+    // For non-default locales, add locale to path
     if (newPath === '/') {
       newPath = `/${newLocale}`;
     } else {
@@ -46,48 +54,29 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="language-switcher">
+    <div className="flex items-center rounded-full bg-gray-100 dark:bg-gray-800 p-1 shadow-sm">
       <button
         onClick={() => handleLanguageChange('en')}
-        className={`lang-btn ${currentLocale === 'en' ? 'active' : ''}`}
+        className={`rounded-full px-3 py-1 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 ${
+          currentLocale === 'en' 
+            ? 'bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm' 
+            : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+        }`}
         aria-label="Switch to English"
       >
         EN
       </button>
-      <span className="divider">|</span>
       <button
         onClick={() => handleLanguageChange('ar')}
-        className={`lang-btn ${currentLocale === 'ar' ? 'active' : ''}`}
+        className={`rounded-full px-3 py-1 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-1 ${
+          currentLocale === 'ar' 
+            ? 'bg-white dark:bg-gray-700 text-indigo-600 dark:text-indigo-400 shadow-sm' 
+            : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+        }`}
         aria-label="Switch to Arabic"
       >
         عربي
       </button>
-
-      <style jsx>{`
-        .language-switcher {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-        .lang-btn {
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0.25rem 0.5rem;
-          font-size: 0.875rem;
-          transition: color 0.2s ease;
-        }
-        .lang-btn:hover {
-          color: #666;
-        }
-        .lang-btn.active {
-          font-weight: bold;
-          color: #0070f3;
-        }
-        .divider {
-          color: #ccc;
-        }
-      `}</style>
     </div>
   );
 }

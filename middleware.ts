@@ -35,8 +35,16 @@ export function middleware(request: NextRequest) {
 
   if (pathnameHasLocale) return;
 
-  // Redirect if there is no locale
+  // Get the preferred locale
   const locale = getLocale(request);
+  
+  // If it's the default locale (en), don't redirect the root path
+  // This allows the root URL to serve English content without /en in the URL
+  if (locale === i18n.defaultLocale && pathname === '/') {
+    return;
+  }
+  
+  // For non-default locales or non-root paths, redirect to the localized URL
   const newUrl = new URL(`/${locale}${pathname === '/' ? '' : pathname}`, request.url);
   
   // Copy all search params
@@ -53,6 +61,7 @@ export const config = {
   // - _next/static (static files)
   // - _next/image (image optimization files)
   // - favicon.ico (favicon file)
-  // - public folder
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.svg$).*)'],
+  // - manifest.json (PWA manifest)
+  // - SVG files and other static assets
+  matcher: ['/((?!api|_next/static|_next/image|favicon\.ico|manifest\.json|.*\.svg$|.*\.png$|.*\.jpg$|.*\.jpeg$|.*\.gif$|.*\.webp$|.*\.ico$).*)'],
 };
