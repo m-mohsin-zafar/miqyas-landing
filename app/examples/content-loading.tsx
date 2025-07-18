@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { getFeatureGridContent } from '../utils/contentLoader';
-import { fetchFeatureGridContent } from '../utils/dynamicContentLoader';
-import { FeatureGridContent } from '../types/content';
-import { DynamicIcon } from '../utils/iconUtils';
+import { getFeatureGridContent } from '@/lib/utils/content/content-loader';
+import { fetchFeatureGridContent } from '@/lib/utils/content/dynamic-content-loader';
+import { FeatureGridContent } from '@/lib/types/content';
+import { DynamicIcon } from '@/lib/utils/icons/dynamic-icon';
 
 // Component that uses static content
 function StaticFeatureExample() {

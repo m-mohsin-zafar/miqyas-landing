@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { i18n } from './app/i18n/config';
+import { i18n } from './lib/i18n';
 
 // Get the preferred locale, similar to the above or using a different method
 function getLocale(request: NextRequest) {

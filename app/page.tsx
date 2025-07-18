@@ -1,23 +1,23 @@
 import { Metadata } from "next";
-import { generateMetadata } from "./utils/metadata";
-import { getDictionary } from './i18n/utils';
-import { i18n, getDirection } from './i18n/config';
-import HeroSection from "./sections/HeroSection";
-import HowItWorks from "./sections/HowItWorks";
-import ProductVisuals from "./sections/ProductVisuals";
-import FeatureGrid from "./sections/FeatureGrid";
-import AudienceSplit from "./sections/AudienceSplit";
-import SocialProof from "./sections/SocialProof";
-import FAQSection from "./sections/FAQSection";
-import ContactSection from "./sections/ContactSection";
-import Footer from "./sections/Footer";
-import ClientLaunchModal from "./components/ClientLaunchModal";
+import { generateMetadata } from "@/lib/utils/metadata";
+import { getDictionary } from '@/lib/i18n/utils';
+import { i18n, getDirection } from '@/lib/i18n/config';
+import { HeroSection } from "@/components/sections/hero";
+import { HowItWorks } from "@/components/sections/how-it-works";
+import { ProductVisuals } from "@/components/sections/product-visuals";
+import { FeatureGrid } from "@/components/sections/feature-grid";
+import { AudienceSplit } from "@/components/sections/audience-split";
+import { SocialProof } from "@/components/sections/social-proof";
+import { FAQSection } from "@/components/sections/faq";
+import { ContactSection } from "@/components/sections/contact";
+import { Footer } from "@/components/sections/footer";
+import { ClientLaunchModal } from "@/components/common";
 import Script from "next/script";
-import { createSaaSProductSchema, createFAQSchema } from "./utils/schema";
-import { getFAQSectionContent } from "./utils/contentLoader";
+import { createSaaSProductSchema, createFAQSchema } from "@/lib/utils/schema";
+import { getFAQSectionContent } from "@/lib/utils/content/content-loader";
 import Link from "next/link";
-import ThemeSwitcher from "./components/ThemeSwitcher";
-import LanguageSwitcher from "./components/LanguageSwitcher";
+import { ThemeSwitcher } from "@/components/common";
+import { LanguageSwitcher } from "@/components/common";
 
 // Add page-specific metadata
 export const metadata: Metadata = generateMetadata({

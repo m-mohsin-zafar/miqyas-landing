@@ -1,5 +1,37 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project Structure
+
+The project follows a well-organized structure for better maintainability:
+
+```
+├── app/                  # Next.js App Router pages and routing
+│   ├── [locale]/         # Locale-specific routes
+│   ├── api/              # API routes
+│   ├── data/             # Static data files (JSON)
+│   ├── i18n/             # Internationalization configuration
+│   └── types/            # TypeScript type definitions
+├── components/           # React components
+│   ├── common/           # Common/shared components
+│   │   └── index.ts      # Re-exports for easier imports
+│   ├── layout/           # Layout components
+│   ├── sections/         # Page section components
+│   │   └── faq/          # FAQ section components
+│   ├── seo/              # SEO-related components
+│   │   └── index.ts      # Re-exports for easier imports
+│   └── ui/               # UI primitive components
+│       └── index.ts      # Re-exports for easier imports
+├── lib/                  # Library code and utilities
+│   └── utils/            # Utility functions
+│       ├── content/      # Content loading utilities
+│       ├── i18n/         # Internationalization utilities
+│       ├── icons/        # Icon utilities
+│       ├── metadata/     # Metadata utilities
+│       ├── schema/       # Schema.org utilities
+│       └── index.ts      # Re-exports for easier imports
+└── public/               # Static assets
+```
+
 ## Getting Started
 
 First, run the development server:

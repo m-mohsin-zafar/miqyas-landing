@@ -1,0 +1,53 @@
+{
+  "faqs": [
+    {
+      "q": "How accurate is the sizing?",
+      "a": "Our AI system achieves over 98% accuracy in size recommendations through our unique algorithm trained on 100,000+ body scans. We continuously improve our models using real-world feedback to maintain high accuracy across all body types and clothing categories.",
+      "icon": "FaChartLine",
+      "iconColor": "text-indigo-500",
+      "category": "accuracy"
+    },
+    {
+      "q": "What platforms do you support?",
+      "a": "MIQYAS integrates seamlessly with all major e-commerce platforms including Shopify, WooCommerce, Magento, BigCommerce, and custom stores via our REST API. We offer plug-and-play modules for quick setup and developer-friendly documentation.",
+      "icon": "FaLaptopCode",
+      "iconColor": "text-blue-500",
+      "category": "integration"
+    },
+    {
+      "q": "How fast is setup?",
+      "a": "Integration typically takes just 2-5 business days. Our team handles the technical implementation, including API connections, size chart configuration, and initial calibration. For standard e-commerce platforms, we have one-click installers.",
+      "icon": "FaRocket",
+      "iconColor": "text-purple-500",
+      "category": "integration"
+    },
+    {
+      "q": "Can I use my own size charts?",
+      "a": "Absolutely! You can upload or build custom size charts in your dashboard. Our system works with your existing sizing standards and can adapt to brand-specific measurements with a calibration period to ensure smooth transition.",
+      "icon": "FaCog",
+      "iconColor": "text-green-500",
+      "category": "customization"
+    },
+    {
+      "q": "Is my data secure?",
+      "a": "We prioritize data security with industry-standard encryption and strict compliance with privacy regulations. Customer measurement data is anonymized and never sold to third parties. We use secure cloud infrastructure with regular security audits.",
+      "icon": "FaUserShield",
+      "iconColor": "text-red-500",
+      "category": "security"
+    },
+    {
+      "q": "Do you offer custom features?",
+      "a": "Yes! From white-label branding to custom workflows, we build to fit your specific business needs, including retailer-specific dashboards, specialized size charts, custom analytics, and tailor-made shopper experiences.",
+      "icon": "FaShoppingCart",
+      "iconColor": "text-yellow-500",
+      "category": "customization"
+    }
+  ],
+  "categories": [
+    { "id": "all", "name": "All Questions" },
+    { "id": "accuracy", "name": "Accuracy" },
+    { "id": "integration", "name": "Integration" },
+    { "id": "customization", "name": "Customization" },
+    { "id": "security", "name": "Security" }
+  ]
+}

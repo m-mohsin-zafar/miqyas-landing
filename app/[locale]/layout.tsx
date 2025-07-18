@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { defaultMetadata } from '../utils/metadata';
-import { createOrganizationSchema } from '../utils/schema';
+import { defaultMetadata } from '@/lib/utils/metadata';
+import { createOrganizationSchema } from '@/lib/utils/schema';
 import Script from 'next/script';
-import { i18n, Locale, getDirection } from '../i18n/config';
-import LanguageSwitcher from "../components/LanguageSwitcher";
-import ThemeSwitcher from "../components/ThemeSwitcher";
+import { i18n, Locale, getDirection } from '@/lib/i18n/config';
+import { LanguageSwitcher } from "@/components/common";
+import { ThemeSwitcher } from "@/components/common";
 import Link from "next/link";
 
 const geistSans = Geist({
