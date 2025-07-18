@@ -8,7 +8,7 @@ import {
   FAQSectionContent, 
   FeatureGridContent,
   HowItWorksContent
-} from '@/app/types/content';
+} from '@/lib/types/content';
 
 // Cache for content to avoid repeated fetches
 const contentCache: Record<string, any> = {};
